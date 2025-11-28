@@ -1,6 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { Resend } from "resend";
+import { apiRateLimit } from "@/lib/rateLimit";
+import { sanitizeText, sanitizeEmail } from "@/lib/sanitize";
+import { sendError, sendSuccess, ApiResponse } from "@/lib/apiHelpers";
+import { ValidationError } from "@/lib/errors";
+import { logger } from "@/lib/logger";
 
 // Inicializar Resend con la API key
 const resend = new Resend(process.env.RESEND_API_KEY || "");
@@ -21,13 +26,19 @@ type ResponseData = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ResponseData>,
+  res: NextApiResponse<ApiResponse>,
 ) {
   // Solo aceptar POST requests
   if (req.method !== "POST") {
-    return res.status(405).json({
+    return sendError(res, new Error("Method not allowed"), "Método no permitido");
+  }
+
+  // Rate limiting
+  const rateLimitResult = apiRateLimit(req);
+  if (!rateLimitResult.success) {
+    return res.status(429).json({
       success: false,
-      error: "Método no permitido",
+      error: rateLimitResult.message || "Too many requests",
     });
   }
 
@@ -37,28 +48,29 @@ export default async function handler(
 
     // Validación básica
     if (!nombre || !apellido || !email || !motivo || !consulta) {
-      return res.status(400).json({
-        success: false,
-        error: "Todos los campos son requeridos",
-      });
+      throw new ValidationError("Todos los campos son requeridos");
     }
+
+    // Sanitizar inputs
+    const sanitizedNombre = sanitizeText(nombre);
+    const sanitizedApellido = sanitizeText(apellido);
+    const sanitizedEmail = sanitizeEmail(email);
+    const sanitizedMotivo = sanitizeText(motivo);
+    const sanitizedConsulta = sanitizeText(consulta);
 
     // Validar formato de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        error: "Email inválido",
-      });
+    if (!emailRegex.test(sanitizedEmail)) {
+      throw new ValidationError("Email inválido");
     }
 
     // Enviar email usando Resend
     const { data, error } = await resend.emails.send({
       from: "La Pertenencia <onboarding@resend.dev>",
       to: ["info@lapertenencia.com"],
-      replyTo: email, // El email del cliente para poder responder fácilmente
-      subject: `Nuevo mensaje de contacto: ${motivo}`,
+      replyTo: sanitizedEmail, // El email del cliente para poder responder fácilmente
+      subject: `Nuevo mensaje de contacto: ${sanitizedMotivo}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -141,32 +153,32 @@ export default async function handler(
               <div class="content">
                 <div class="field">
                   <div class="field-label">Nombre Completo</div>
-                  <div class="field-value">${nombre} ${apellido}</div>
+                  <div class="field-value">${sanitizedNombre} ${sanitizedApellido}</div>
                 </div>
                 
                 <div class="field">
                   <div class="field-label">Email</div>
                   <div class="field-value">
-                    <a href="mailto:${email}" style="color: #d4af37; text-decoration: none;">
-                      ${email}
+                    <a href="mailto:${sanitizedEmail}" style="color: #d4af37; text-decoration: none;">
+                      ${sanitizedEmail}
                     </a>
                   </div>
                 </div>
                 
                 <div class="field">
                   <div class="field-label">Motivo de Consulta</div>
-                  <div class="field-value">${motivo}</div>
+                  <div class="field-value">${sanitizedMotivo}</div>
                 </div>
                 
                 <div class="field">
                   <div class="field-label">Consulta</div>
-                  <div class="consulta-box">${consulta}</div>
+                  <div class="consulta-box">${sanitizedConsulta}</div>
                 </div>
               </div>
               
               <div class="footer">
                 <p>Este email fue enviado desde el formulario de contacto de La Pertenencia</p>
-                <p style="margin-top: 10px;">Para responder, simplemente responde a este email o escribe a: ${email}</p>
+                <p style="margin-top: 10px;">Para responder, simplemente responde a este email o escribe a: ${sanitizedEmail}</p>
               </div>
             </div>
           </body>
@@ -175,26 +187,13 @@ export default async function handler(
     });
 
     if (error) {
-      console.error("❌ Error sending email:", error);
-
-      return res.status(500).json({
-        success: false,
-        error: "Error al enviar el email. Por favor intenta nuevamente.",
-      });
+      logger.error("Error sending email", error);
+      return sendError(res, error, "Error al enviar el email. Por favor intenta nuevamente.");
     }
 
-    console.log("✅ Email sent successfully:", data);
-
-    return res.status(200).json({
-      success: true,
-      message: "Mensaje enviado correctamente",
-    });
+    logger.info("Email sent successfully", { emailId: data?.id });
+    return sendSuccess(res, { message: "Mensaje enviado correctamente" });
   } catch (error) {
-    console.error("❌ Error in contact API:", error);
-
-    return res.status(500).json({
-      success: false,
-      error: "Error al procesar la solicitud",
-    });
+    return sendError(res, error, "Error al procesar la solicitud");
   }
 }

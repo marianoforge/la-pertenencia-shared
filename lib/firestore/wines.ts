@@ -18,6 +18,7 @@ import {
   runTransaction,
   QuerySnapshot,
   DocumentSnapshot,
+  QueryDocumentSnapshot,
 } from "firebase/firestore";
 
 import { db } from "@/lib/firebase";
@@ -25,6 +26,7 @@ import { deleteImageByUrl } from "@/lib/storage";
 import { Wine } from "@/types/wine";
 import { FirestoreError, WineNotFoundError } from "@/lib/errors";
 import { logger } from "@/lib/logger";
+import { getPaginated, PaginatedResult, PaginationOptions } from "./pagination";
 
 const COLLECTION = "wines";
 
@@ -51,7 +53,7 @@ export const generateWineId = (marca: string, varietal: string): string => {
   return `${cleanMarca}-${cleanVarietal}-${uid}`;
 };
 
-// Get all wines
+// Get all wines (mantiene compatibilidad, pero considera usar getWinesPaginated)
 export const getAllWines = async (): Promise<Wine[]> => {
   try {
     const winesCollection = collection(db, COLLECTION);
@@ -65,6 +67,18 @@ export const getAllWines = async (): Promise<Wine[]> => {
     logger.error("Error fetching wines from Firestore", error);
     throw new FirestoreError("Failed to fetch wines", error);
   }
+};
+
+// Get wines with pagination (recomendado para grandes volúmenes)
+export const getWinesPaginated = async (
+  options: PaginationOptions = {}
+): Promise<PaginatedResult<Wine>> => {
+  return getPaginated<Wine>(COLLECTION, {
+    pageSize: 20,
+    orderByField: "createdAt",
+    orderDirection: "desc",
+    ...options,
+  });
 };
 
 // Get wine by ID

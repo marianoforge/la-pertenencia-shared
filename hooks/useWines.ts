@@ -18,7 +18,7 @@ import {
 import { QUERY_CONFIG } from "@/lib/constants";
 import { logger } from "@/lib/logger";
 
-function applyFilters(wines: any[], filters?: WineFilters): any[] {
+function applyFilters(wines: Wine[], filters?: WineFilters): Wine[] {
   if (!filters) return wines;
 
   return wines.filter((wine) => {
@@ -78,7 +78,7 @@ function applyFilters(wines: any[], filters?: WineFilters): any[] {
 
 async function fetchWines(filters?: WineFilters): Promise<Wine[]> {
   try {
-    let wines: any[];
+    let wines: Wine[];
 
     if (filters?.category && filters.category !== "all") {
       wines = await getWinesByCategory(filters.category);
@@ -90,7 +90,7 @@ async function fetchWines(filters?: WineFilters): Promise<Wine[]> {
       wines = await getAllWines();
     }
 
-    return applyFilters(wines, filters) as Wine[];
+    return applyFilters(wines, filters);
   } catch (error) {
     logger.error("Error fetching wines", error);
     throw new Error("Failed to fetch wines from Firebase");

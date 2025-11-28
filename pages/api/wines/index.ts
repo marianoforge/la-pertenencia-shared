@@ -13,11 +13,21 @@ import { createWineSchema } from "../../../lib/validators/wine";
 import { sendSuccess, sendError, ApiResponse } from "../../../lib/apiHelpers";
 import { ValidationError } from "../../../lib/errors";
 import { logger } from "../../../lib/logger";
+import { apiRateLimit } from "../../../lib/rateLimit";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponse<Wine[] | Wine>>,
 ) {
+  // Rate limiting
+  const rateLimitResult = apiRateLimit(req);
+  if (!rateLimitResult.success) {
+    return res.status(429).json({
+      success: false,
+      error: rateLimitResult.message || "Too many requests",
+    });
+  }
+
   if (req.method === "GET") {
     try {
       const { category, region, minPrice, maxPrice, featured, search } =

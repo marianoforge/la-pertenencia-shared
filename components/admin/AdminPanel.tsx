@@ -1,17 +1,59 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
-import WineAdminPanel from "./WineAdminPanel";
-import ComboAdminPanel from "./ComboAdminPanel";
-import SuscriptosAdminPanel from "./SuscriptosAdminPanel";
-import OrdersAdminPanel from "./OrdersAdminPanel";
-import OtrosAdminPanel from "./OtrosAdminPanel";
+
+// Lazy load admin panels para mejorar performance
+const WineAdminPanel = dynamic(() => import("./WineAdminPanel"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+    </div>
+  ),
+  ssr: false,
+});
+
+const ComboAdminPanel = dynamic(() => import("./ComboAdminPanel"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+    </div>
+  ),
+  ssr: false,
+});
+
+const SuscriptosAdminPanel = dynamic(() => import("./SuscriptosAdminPanel"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+    </div>
+  ),
+  ssr: false,
+});
+
+const OrdersAdminPanel = dynamic(() => import("./OrdersAdminPanel"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+    </div>
+  ),
+  ssr: false,
+});
+
+const OtrosAdminPanel = dynamic(() => import("./OtrosAdminPanel"), {
+  loading: () => (
+    <div className="flex items-center justify-center py-12">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+    </div>
+  ),
+  ssr: false,
+});
 
 type TabType = "wines" | "combos" | "suscriptos" | "orders" | "otros";
 

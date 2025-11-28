@@ -18,6 +18,7 @@ import { db } from "@/lib/firebase";
 import { Order } from "@/types/order";
 import { FirestoreError, OrderNotFoundError } from "@/lib/errors";
 import { logger } from "@/lib/logger";
+import { getPaginated, PaginatedResult, PaginationOptions } from "./pagination";
 
 const COLLECTION = "orders";
 
@@ -68,7 +69,7 @@ export const createOrder = async (
   }
 };
 
-// Get all orders
+// Get all orders (mantiene compatibilidad, pero considera usar getOrdersPaginated)
 export const getAllOrders = async (): Promise<Order[]> => {
   try {
     const ordersCollection = collection(db, COLLECTION);
@@ -83,6 +84,18 @@ export const getAllOrders = async (): Promise<Order[]> => {
     logger.error("Error fetching orders", error);
     throw new FirestoreError("Failed to fetch orders", error);
   }
+};
+
+// Get orders with pagination (recomendado para grandes volúmenes)
+export const getOrdersPaginated = async (
+  options: PaginationOptions = {}
+): Promise<PaginatedResult<Order>> => {
+  return getPaginated<Order>(COLLECTION, {
+    pageSize: 20,
+    orderByField: "createdAt",
+    orderDirection: "desc",
+    ...options,
+  });
 };
 
 // Get order by ID
