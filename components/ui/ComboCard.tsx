@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { QuantitySelector } from "./QuantitySelector";
 import { Divider } from "./Divider";
@@ -6,7 +6,6 @@ import { PriceDisplay } from "./PriceDisplay";
 
 import { Combo } from "@/types/combo";
 import { cn } from "@/lib/utils";
-import { useAddToCart } from "@/hooks/useAddToCart";
 import { ICONS, ICON_FILTERS } from "@/lib/constants";
 
 interface ComboCardProps {
@@ -20,13 +19,13 @@ const ComboCard: React.FC<ComboCardProps> = ({
   onAddToCart,
   className,
 }) => {
-  const { quantity, setQuantity, addToCart } = useAddToCart({
-    onSuccess: (_, qty) => {
-      if (onAddToCart) {
-        onAddToCart(combo, qty);
-      }
-    },
-  });
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    if (onAddToCart) {
+      onAddToCart(combo, quantity);
+    }
+  };
 
   return (
     <div
@@ -101,7 +100,7 @@ const ComboCard: React.FC<ComboCardProps> = ({
         {/* Add to Cart Button */}
         <button
           className="self-stretch px-6 sm:pl-12 sm:pr-10 py-2 bg-neutral-900 rounded-sm outline outline-[0.50px] outline-offset-[-0.50px] outline-amber-300 inline-flex justify-center items-center gap-2 sm:gap-4 hover:bg-neutral-800 transition-colors"
-          onClick={() => addToCart(combo as any)}
+          onClick={handleAddToCart}
         >
           <div className="justify-start text-amber-300 text-sm sm:text-base font-medium font-['Lora'] uppercase tracking-[4px] sm:tracking-[8px]">
             agregar

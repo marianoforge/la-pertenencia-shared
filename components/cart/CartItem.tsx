@@ -14,7 +14,8 @@ export const CartItem: React.FC<CartItemProps> = ({
   onRemove,
 }) => {
   const { wine, quantity, priceAtTimeOfAdd } = item;
-  const totalPrice = priceAtTimeOfAdd * quantity;
+  const price = Number(priceAtTimeOfAdd) || 0;
+  const totalPrice = price * quantity;
 
   return (
     <div className="flex gap-4 p-4 bg-neutral-50 rounded-sm border border-neutral-200">

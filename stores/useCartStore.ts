@@ -13,13 +13,19 @@ interface CartStore extends CartState, CartActions {
 }
 
 const calculateFinalPrice = (wine: Wine): number => {
-  return wine.price + (wine.price * wine.iva) / 100;
+  const price = Number(wine.price) || 0;
+  const iva = Number(wine.iva) || 0;
+  return price + (price * iva) / 100;
 };
 
 const calculateCartTotals = (items: CartItem[]) => {
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
   const totalAmount = items.reduce(
-    (sum, item) => sum + item.priceAtTimeOfAdd * item.quantity,
+    (sum, item) => {
+      const price = Number(item.priceAtTimeOfAdd) || 0;
+      const quantity = item.quantity || 0;
+      return sum + price * quantity;
+    },
     0
   );
   
