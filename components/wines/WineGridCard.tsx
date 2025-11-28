@@ -68,7 +68,7 @@ const WineGridCard = ({ wine, onAddToCart }: WineGridCardProps) => {
           alt={imageAlt}
           className="max-w-full max-h-full object-contain"
           height={200}
-          priority={false}
+          loading="lazy"
           src={imageUrl}
           width={200}
         />

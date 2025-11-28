@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import { Button } from "./Button";
 import { QuantitySelector } from "./QuantitySelector";
@@ -47,10 +48,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       >
         <div className="w-full relative rounded-lg overflow-hidden">
-          <img
+          <Image
             alt={imageAlt}
             className="w-800 h-[430px] object-cover rounded-lg"
+            height={430}
+            loading="lazy"
             src={image}
+            width={800}
           />
         </div>
         <div className="py-5 px-4 left-[30px] top-[38.78px] absolute bg-white inline-flex flex-col justify-start items-start gap-1">

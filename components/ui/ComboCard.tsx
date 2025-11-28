@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 
 import { QuantitySelector } from "./QuantitySelector";
 import { Divider } from "./Divider";
@@ -37,21 +38,24 @@ const ComboCard: React.FC<ComboCardProps> = ({
         className
       )}
     >
-      {}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <img
+        <Image
           alt="Combo background"
           className="w-full h-full object-cover"
+          fill
+          loading="lazy"
           src={combo.backgroundImage}
         />
       </div>
 
-      {}
       <div className="flex justify-center items-end relative z-10 h-44 sm:flex-none sm:w-1/2 sm:h-auto lg:h-80">
-        <img
+        <Image
           alt={combo.name}
           className="w-auto h-40 sm:w-80 sm:h-auto lg:w-84 lg:h-72 object-contain object-bottom"
+          height={320}
+          loading="lazy"
           src={combo.image}
+          width={336}
         />
       </div>
 
@@ -106,11 +110,13 @@ const ComboCard: React.FC<ComboCardProps> = ({
             agregar
           </div>
           <div className="w-6 h-6 sm:w-8 sm:h-8 relative rounded-sm flex items-center justify-center">
-            <img
+            <Image
               alt="Carrito"
               className="w-5 h-5 sm:w-6 sm:h-6"
+              height={24}
               src={ICONS.CART}
               style={{ filter: ICON_FILTERS.GOLD }}
+              width={24}
             />
           </div>
         </button>

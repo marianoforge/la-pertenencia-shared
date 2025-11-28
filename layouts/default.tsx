@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { Head } from "./head";
@@ -19,13 +17,18 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   useEffect(() => {
-    AOS.init({
-      duration: 800, 
-      easing: "ease-out-cubic", 
-      once: true, 
-      offset: 100, 
-      delay: 0, 
-    });
+    const initAOS = async () => {
+      const AOS = (await import("aos")).default;
+      await import("aos/dist/aos.css");
+      AOS.init({
+        duration: 800,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 100,
+        delay: 0,
+      });
+    };
+    initAOS();
   }, []);
 
   return (
