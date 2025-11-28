@@ -20,11 +20,11 @@ export default function DefaultLayout({
 }) {
   useEffect(() => {
     AOS.init({
-      duration: 800, // Duración de la animación
-      easing: "ease-out-cubic", // Easing suave
-      once: true, // Solo anima una vez
-      offset: 100, // Offset desde el viewport
-      delay: 0, // Sin delay por defecto
+      duration: 800, 
+      easing: "ease-out-cubic", 
+      once: true, 
+      offset: 100, 
+      delay: 0, 
     });
   }, []);
 
@@ -36,7 +36,7 @@ export default function DefaultLayout({
       <main id="main-content" className="flex-grow font-lora" role="main">{children}</main>
       <footer className="w-full flex items-center justify-center py-3">
         <div className="w-full self-stretch pt-12 bg-white inline-flex flex-col justify-center items-center gap-10 overflow-hidden">
-          {/* Desktop LG+ Layout */}
+          {}
           <div
             className="fluid-menu-hide w-full"
             style={{
@@ -46,7 +46,7 @@ export default function DefaultLayout({
             }}
           >
             <div className="w-full inline-flex justify-between items-start">
-              {/* Logo */}
+              {}
               <div className="flex items-start relative w-24 h-24">
                 <Image
                   alt="La Pertenencia"
@@ -56,7 +56,7 @@ export default function DefaultLayout({
                 />
               </div>
 
-              {/* Productos */}
+              {}
               <nav
                 aria-label="Productos"
                 className="inline-flex flex-col justify-start items-start gap-2.5"
@@ -100,7 +100,7 @@ export default function DefaultLayout({
                 </ul>
               </nav>
 
-              {/* Ayuda */}
+              {}
               <nav
                 aria-label="Ayuda"
                 className="inline-flex flex-col justify-start items-start gap-2.5"
@@ -136,7 +136,7 @@ export default function DefaultLayout({
                 </ul>
               </nav>
 
-              {/* Contactos */}
+              {}
               <address className="inline-flex flex-col justify-start items-start gap-2.5 not-italic">
                 <h2 className="justify-start text-yellow-700 text-xl font-normal font-['Lora'] uppercase leading-normal tracking-[5px]">
                   Contactos
@@ -199,7 +199,7 @@ export default function DefaultLayout({
                 </div>
               </address>
 
-              {/* Seguinos en */}
+              {}
               <nav
                 aria-label="Redes sociales"
                 className="inline-flex flex-col justify-start items-start gap-5"
@@ -242,36 +242,14 @@ export default function DefaultLayout({
                       />
                     </a>
                   </li>
-                  {/* <a
-                    className="w-6 h-6 relative overflow-hidden hover:opacity-75 transition-opacity"
-                    href="https://x.com/lapertenencia"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      alt="X (Twitter)"
-                      className="w-full h-full object-contain"
-                      src="/icons/ICON X.svg"
-                    />
-                  </a>
-                  <a
-                    className="w-7 h-6 relative overflow-hidden hover:opacity-75 transition-opacity"
-                    href="https://youtube.com/@lapertenencia"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <img
-                      alt="YouTube"
-                      className="w-full h-full object-contain"
-                      src="/icons/ICON YT.svg"
-                    />
-                  </a> */}
+                  {
+}
                 </ul>
               </nav>
             </div>
           </div>
 
-          {/* Footer Layout - 1000px down to mobile */}
+          {}
           <div
             className="fluid-menu-show hide-at-fluid-breakpoint w-full flex-col max-[380px]:px-3 max-[480px]:px-4"
             style={{
@@ -281,9 +259,9 @@ export default function DefaultLayout({
               gap: "clamp(1.5rem, 4vw, 2rem)",
             }}
           >
-            {/* Primera fila: Logo | Productos | Experiencias */}
+            {}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
-              {/* Logo */}
+              {}
               <div className="flex justify-start sm:justify-start items-start relative w-24 sm:w-20 md:w-24 h-24 sm:h-20 md:h-24">
                 <Image
                   alt="La Pertenencia"
@@ -293,7 +271,7 @@ export default function DefaultLayout({
                 />
               </div>
 
-              {/* Productos */}
+              {}
               <div className="flex flex-col gap-2.5">
                 <div className="text-yellow-700 text-base sm:text-sm md:text-lg font-normal font-['Lora'] uppercase leading-normal tracking-[3px] sm:tracking-[2px] md:tracking-[3px]">
                   Productos
@@ -336,7 +314,7 @@ export default function DefaultLayout({
                 </div>
               </div>
 
-              {/* Ayuda */}
+              {}
               <div className="flex flex-col gap-2.5">
                 <div className="text-yellow-700 text-base sm:text-sm md:text-lg font-normal font-['Lora'] uppercase leading-normal tracking-[3px] sm:tracking-[2px] md:tracking-[3px]">
                   Ayuda
@@ -366,12 +344,12 @@ export default function DefaultLayout({
               </div>
             </div>
 
-            {/* Segunda fila: Vacío | Contactos | Vacío */}
+            {}
             <div className="hidden sm:grid grid-cols-3 gap-4">
-              {/* Columna vacía */}
+              {}
               <div />
 
-              {/* Contactos */}
+              {}
               <div className="flex flex-col gap-2.5">
                 <div className="text-yellow-700 text-sm md:text-lg font-normal font-['Lora'] uppercase leading-normal tracking-[2px] md:tracking-[3px]">
                   contactos
@@ -426,11 +404,11 @@ export default function DefaultLayout({
                 </div>
               </div>
 
-              {/* Columna vacía */}
+              {}
               <div />
             </div>
 
-            {/* Mobile: Contactos debajo */}
+            {}
             <div className="sm:hidden flex flex-col gap-2.5">
               <div className="text-yellow-700 text-base font-normal font-['Lora'] uppercase leading-normal tracking-[3px]">
                 contactos
@@ -485,7 +463,7 @@ export default function DefaultLayout({
               </div>
             </div>
 
-            {/* Seguinos en: centrado */}
+            {}
             <div className="flex flex-col items-center gap-3 sm:gap-2 md:gap-4">
               <div className="text-yellow-700 text-base sm:text-sm md:text-lg font-normal font-['Lora'] uppercase leading-normal tracking-[3px] sm:tracking-[2px] md:tracking-[3px]">
                 Seguinos en:

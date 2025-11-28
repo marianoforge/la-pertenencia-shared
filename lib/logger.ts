@@ -1,8 +1,3 @@
-/**
- * Logger centralizado para el proyecto
- * En producción, solo muestra errores. En desarrollo, muestra todos los logs.
- */
-
 type LogLevel = 'log' | 'error' | 'warn' | 'info';
 
 interface LogEntry {
@@ -23,16 +18,12 @@ class Logger {
       timestamp: new Date().toISOString(),
     };
 
-    // En producción, solo loggear errores
     if (!isDevelopment) {
       if (level === 'error') {
         console.error(`[${entry.timestamp}]`, message, data || '');
-        // TODO: En producción, enviar a servicio de logging (Sentry, LogRocket, etc.)
       }
       return;
     }
-
-    // En desarrollo, mostrar todos los logs
     const consoleMethod = console[level] || console.log;
     const prefix = `[${level.toUpperCase()}]`;
     consoleMethod(prefix, message, data || '');

@@ -37,7 +37,7 @@ export const useAuth = () => {
     error: null,
   });
 
-  // Listen to authentication state changes
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setAuthState({
@@ -50,7 +50,7 @@ export const useAuth = () => {
     return () => unsubscribe();
   }, []);
 
-  // Sign up with email and password
+  
   const signUp = async ({ email, password, displayName }: SignUpData) => {
     try {
       setAuthState((prev) => ({ ...prev, loading: true, error: null }));
@@ -81,7 +81,7 @@ export const useAuth = () => {
     }
   };
 
-  // Sign in with email and password
+  
   const signIn = async ({ email, password }: SignInData) => {
     try {
       setAuthState((prev) => ({ ...prev, loading: true, error: null }));
@@ -108,7 +108,7 @@ export const useAuth = () => {
     }
   };
 
-  // Sign in with Google
+  
   const signInWithGoogle = async () => {
     try {
       setAuthState((prev) => ({ ...prev, loading: true, error: null }));
@@ -133,7 +133,7 @@ export const useAuth = () => {
     }
   };
 
-  // Sign out
+  
   const logout = async () => {
     try {
       setAuthState((prev) => ({ ...prev, loading: true, error: null }));
@@ -154,7 +154,7 @@ export const useAuth = () => {
     }
   };
 
-  // Reset password
+  
   const resetPassword = async (email: string) => {
     try {
       setAuthState((prev) => ({ ...prev, loading: true, error: null }));
@@ -176,7 +176,7 @@ export const useAuth = () => {
     }
   };
 
-  // Update user profile
+  
   const updateUserProfile = async (data: {
     displayName?: string;
     photoURL?: string;
@@ -204,7 +204,7 @@ export const useAuth = () => {
     }
   };
 
-  // Clear error
+  
   const clearError = () => {
     setAuthState((prev) => ({ ...prev, error: null }));
   };

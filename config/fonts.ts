@@ -4,11 +4,11 @@ import {
   Lora,
 } from "next/font/google";
 
-// Lora font with all needed weights and styles
+
 export const fontLora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
-  weight: ["400", "500", "600", "700"], // Regular, Medium, Semi Bold, Bold
+  weight: ["400", "500", "600", "700"], 
   style: ["normal", "italic"],
   display: "swap",
 });

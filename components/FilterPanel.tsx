@@ -76,7 +76,7 @@ const FilterPanel = () => {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {}
           <motion.button
             animate={{ opacity: 1 }}
             aria-label="Cerrar panel de filtros"
@@ -93,7 +93,7 @@ const FilterPanel = () => {
             type="button"
           />
 
-          {/* Filter Panel */}
+          {}
           <motion.div
             animate={{ x: 0 }}
             className="fixed left-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50 flex flex-col"
@@ -101,10 +101,10 @@ const FilterPanel = () => {
             initial={{ x: "-100%" }}
             transition={{
               duration: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94], // easeOutCubic
+              ease: [0.25, 0.46, 0.45, 0.94], 
             }}
           >
-            {/* Header */}
+            {}
             <div className="flex items-center justify-between p-5 border-b border-neutral-400">
               <h2 className="text-lg font-semibold font-['Lora'] text-neutral-900 uppercase tracking-[4px]">
                 Filtrar por:
@@ -173,7 +173,7 @@ const FilterPanel = () => {
               />
             </div>
 
-            {/* Footer Actions */}
+            {}
             <div className="p-5 border-t border-neutral-400 flex gap-3">
               <button
                 aria-label="Aplicar filtros"

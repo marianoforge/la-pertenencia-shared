@@ -17,7 +17,7 @@ export default function SuscriptosAdminPanel() {
   const [error, setError] = useState<string | null>(null);
   const [processingEmail, setProcessingEmail] = useState<string | null>(null);
 
-  // Cargar suscriptores al montar el componente
+  
   useEffect(() => {
     loadSubscriptions();
   }, []);
@@ -64,7 +64,7 @@ export default function SuscriptosAdminPanel() {
       return;
     }
 
-    // Crear CSV
+    
     const headers = ["Email", "Fecha de Suscripción", "Estado"];
     const rows = subscriptions.map((sub) => [
       sub.email,
@@ -77,7 +77,7 @@ export default function SuscriptosAdminPanel() {
       ...rows.map((row) => row.join(",")),
     ].join("\n");
 
-    // Crear blob y descargar
+    
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
@@ -93,7 +93,7 @@ export default function SuscriptosAdminPanel() {
     document.body.removeChild(link);
   };
 
-  // Estados de carga
+  
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -122,7 +122,7 @@ export default function SuscriptosAdminPanel() {
 
   return (
     <div className="space-y-6">
-      {/* Stats Cards */}
+      {}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="p-6 bg-gradient-to-br from-blue-50 to-blue-100">
           <div className="flex items-center justify-between">
@@ -163,7 +163,7 @@ export default function SuscriptosAdminPanel() {
         </Card>
       </div>
 
-      {/* Actions Bar */}
+      {}
       <Card className="p-4">
         <div className="flex justify-between items-center">
           <div>
@@ -195,7 +195,7 @@ export default function SuscriptosAdminPanel() {
         </div>
       </Card>
 
-      {/* Subscriptions Table */}
+      {}
       {subscriptions.length === 0 ? (
         <Card className="p-12 text-center">
           <div className="text-6xl mb-4">📭</div>

@@ -66,7 +66,7 @@ const Contacto = () => {
           type: "success",
           text: "¡Mensaje enviado con éxito! Te responderemos pronto.",
         });
-        // Limpiar formulario
+        
         setFormData({
           nombre: "",
           apellido: "",
@@ -96,20 +96,20 @@ const Contacto = () => {
       id="contacto"
       variant="full-width"
     >
-      {/* Background Image */}
+      {}
       <img
         alt="Contacto"
         className="w-full h-full object-cover absolute inset-0"
         src="/images/contactanos.png"
       />
 
-      {/* Overlay */}
+      {}
       <div className="md:h-[800px] absolute inset-0 bg-gradient-to-l from-neutral-900 via-neutral-900/85 to-neutral-900" />
 
-      {/* Form Container */}
+      {}
       <div className="relative z-10 w-full max-[380px]:px-0 max-[480px]:px-0 px-4 flex justify-center items-center">
         <div className="w-full max-w-96 sm:max-w-2xl px-4 sm:px-8 flex flex-col justify-start items-center gap-7 overflow-hidden rounded-lg">
-          {/* Header */}
+          {}
           <div className="self-stretch py-5 flex flex-col justify-start items-center gap-2.5">
             <div className=" text-center justify-start text-dorado-light text-sm md:text-base lg:text-xl font-medium font-['Lora'] uppercase tracking-[7px] md:tracking-[8px] lg:tracking-[10px]">
               contactanos
@@ -119,14 +119,14 @@ const Contacto = () => {
             </div>
           </div>
 
-          {/* Form */}
+          {}
           <form
             className="self-stretch flex justify-center items-start"
             onSubmit={handleSubmit}
             aria-label="Formulario de contacto"
           >
             <div className="flex-1 md:inline-flex flex flex-col justify-center items-center gap-5 md:gap-6">
-              {/* Nombre y Apellido */}
+              {}
               <div className="self-stretch flex justify-start items-start gap-5">
                 <div className="flex-1 px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-center">
                   <label htmlFor="contact-nombre" className="sr-only">
@@ -164,7 +164,7 @@ const Contacto = () => {
                 </div>
               </div>
 
-              {/* Email */}
+              {}
               <div className="self-stretch px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-center">
                 <label htmlFor="contact-email" className="sr-only">
                   Email
@@ -183,7 +183,7 @@ const Contacto = () => {
                 />
               </div>
 
-              {/* Motivo Dropdown */}
+              {}
               <div className="self-stretch px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 relative">
                 <label htmlFor="contact-motivo" className="sr-only">
                   Motivo de consulta
@@ -246,7 +246,7 @@ const Contacto = () => {
                 )}
               </div>
 
-              {/* Consulta */}
+              {}
               <div className="self-stretch h-28 md:h-40 px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-start">
                 <label htmlFor="contact-consulta" className="sr-only">
                   Tu consulta
@@ -264,7 +264,7 @@ const Contacto = () => {
                 />
               </div>
 
-              {/* Submit Button */}
+              {}
               <button
                 aria-label={isLoading ? "Enviando mensaje..." : "Enviar mensaje de contacto"}
                 className="self-stretch h-9 px-7 py-3 bg-amber-300 rounded-sm outline outline-[0.36px] outline-offset-[-0.36px] outline-neutral-900 flex justify-center items-center gap-2 hover:bg-amber-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -276,7 +276,7 @@ const Contacto = () => {
                 </span>
               </button>
 
-              {/* Success/Error Message */}
+              {}
               {message && (
                 <div
                   role="alert"

@@ -3,13 +3,13 @@ import { MercadoPagoConfig, Payment } from "mercadopago";
 
 import { reduceWineStockServerSide } from "@/lib/firestore-server";
 
-// Detectar y configurar credenciales correctas
+
 const useTestCredentials = !!process.env.MERCADOPAGO_ACCESS_TOKEN_TEST;
 const accessToken = useTestCredentials
   ? process.env.MERCADOPAGO_ACCESS_TOKEN_TEST!
   : process.env.MERCADOPAGO_ACCESS_TOKEN!;
 
-// Configurar Mercado Pago
+
 const client = new MercadoPagoConfig({
   accessToken: accessToken,
 });
@@ -30,7 +30,7 @@ export default async function handler(
     if (type === "payment") {
       const paymentId = data.id;
 
-      // Obtener los detalles del pago
+      
       const paymentInfo = await payment.get({ id: paymentId });
 
       console.log("\n🔔 ===== NUEVO PAGO RECIBIDO =====");
@@ -42,7 +42,7 @@ export default async function handler(
       console.log("💵 Monto:", `$${paymentInfo.transaction_amount}`);
       console.log("✅ Estado:", paymentInfo.status);
 
-      // Mostrar información de envío del cliente
+      
       if (paymentInfo.metadata && paymentInfo.metadata.shipping_info) {
         console.log("\n📦 INFORMACIÓN DE ENVÍO:");
         console.log(
@@ -59,7 +59,7 @@ export default async function handler(
         );
       }
 
-      // Mostrar información del comprador (payer)
+      
       if (paymentInfo.payer) {
         console.log("\n👤 INFORMACIÓN DEL COMPRADOR:");
         console.log("   📧 Email:", paymentInfo.payer.email);
@@ -76,7 +76,7 @@ export default async function handler(
         }
       }
 
-      // Mostrar items del pedido
+      
       if (paymentInfo.metadata && paymentInfo.metadata.items) {
         console.log("\n🍷 PRODUCTOS:");
         paymentInfo.metadata.items.forEach((item: any, index: number) => {
@@ -88,16 +88,16 @@ export default async function handler(
 
       console.log("================================\n");
 
-      // Aquí puedes agregar lógica adicional como:
-      // - Actualizar el estado del pedido en tu base de datos
-      // - Enviar emails de confirmación
-      // - Actualizar el stock de productos
+      
+      
+      
+      
 
       switch (paymentInfo.status) {
         case "approved":
           console.log("Payment approved:", paymentInfo.external_reference);
 
-          // Reducir stock de los vinos comprados
+          
           if (paymentInfo.metadata && paymentInfo.metadata.items) {
             console.log("Processing stock reduction for approved payment");
 
@@ -107,7 +107,7 @@ export default async function handler(
                 quantity: number;
               }>;
 
-              // Procesar cada item para reducir stock
+              
               for (const item of items) {
                 const result = await reduceWineStockServerSide(
                   item.wine_id,
@@ -123,10 +123,10 @@ export default async function handler(
                     `❌ Failed to reduce stock for wine ${item.wine_id}: ${result.error}`
                   );
 
-                  // En un caso real, aquí podrías implementar lógica adicional como:
-                  // - Enviar notificación al administrador
-                  // - Registrar el error en un sistema de logs
-                  // - Intentar la operación nuevamente más tarde
+                  
+                  
+                  
+                  
                 }
               }
             } catch (error) {
@@ -141,11 +141,11 @@ export default async function handler(
           break;
         case "pending":
           console.log("Payment pending:", paymentInfo.external_reference);
-          // Lógica para pago pendiente
+          
           break;
         case "rejected":
           console.log("Payment rejected:", paymentInfo.external_reference);
-          // Lógica para pago rechazado
+          
           break;
         default:
           console.log("Payment status unknown:", paymentInfo.status);

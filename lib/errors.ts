@@ -1,7 +1,3 @@
-/**
- * Sistema de manejo de errores consistente
- */
-
 export class AppError extends Error {
   constructor(
     message: string,

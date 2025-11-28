@@ -60,7 +60,7 @@ const ImaginaTuVino = () => {
               </span>
             </div>
           </div>
-          {/* Button for desktop - inside right content */}
+          {}
           <div className="w-full pt-2.5 lg:pt-0 lg:mt-8 min-[481px]:flex hidden flex-col">
             <Link href="/crea-tu-vino">
               <Button size="sm" variant="primary">
@@ -71,7 +71,7 @@ const ImaginaTuVino = () => {
         </div>
       </div>
 
-      {/* Button for mobile - outside flex container to be full width */}
+      {}
       <div className="w-full max-w-[1300px] max-[480px]:px-0 px-4 sm:px-0 max-[480px]:block hidden">
         <Link className="block w-full" href="/crea-tu-vino">
           <Button size="sm" variant="primary">

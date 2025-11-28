@@ -19,7 +19,7 @@ export const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <div className="flex gap-4 p-4 bg-neutral-50 rounded-sm border border-neutral-200">
-      {/* Wine Image */}
+      {}
       <div className="w-20 h-20 bg-neutral-900 rounded-sm flex items-center justify-center flex-shrink-0 relative overflow-hidden">
         {wine.image ? (
           <Image
@@ -55,7 +55,7 @@ export const CartItem: React.FC<CartItemProps> = ({
         )}
       </div>
 
-      {/* Wine Info */}
+      {}
       <div className="flex-1 min-w-0">
         <h4 className="font-semibold text-sm font-['Lora'] text-neutral-900 mb-1 truncate uppercase tracking-[1px]">
           {wine.marca}
@@ -64,7 +64,7 @@ export const CartItem: React.FC<CartItemProps> = ({
           {wine.winery} • {wine.vintage}
         </p>
 
-        {/* Quantity Controls */}
+        {}
         <div className="flex items-center gap-3 mb-3">
           <button
             aria-label={`Disminuir cantidad de ${wine.marca}`}
@@ -89,7 +89,7 @@ export const CartItem: React.FC<CartItemProps> = ({
           </button>
         </div>
 
-        {/* Price and Remove */}
+        {}
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold font-['Lora'] text-neutral-900 tracking-wide">
             {formatPrice(totalPrice)}

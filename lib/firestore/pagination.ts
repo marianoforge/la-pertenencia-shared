@@ -1,6 +1,4 @@
-/**
- * Utilidades de paginación para Firestore
- */
+
 
 import {
   collection,
@@ -30,9 +28,7 @@ export interface PaginationOptions {
   lastDoc?: QueryDocumentSnapshot<DocumentData> | null;
 }
 
-/**
- * Obtiene una página de documentos de una colección
- */
+
 export async function getPaginated<T>(
   collectionName: string,
   options: PaginationOptions = {}
@@ -48,7 +44,7 @@ export async function getPaginated<T>(
     const collectionRef = collection(db, collectionName);
     const constraints: QueryConstraint[] = [
       orderBy(orderByField, orderDirection),
-      limit(pageSize + 1), // +1 para verificar si hay más páginas
+      limit(pageSize + 1), 
     ];
 
     if (lastDoc) {

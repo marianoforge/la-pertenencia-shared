@@ -49,7 +49,7 @@ const Recomendados = ({
       id: combo.id,
       marca: combo.name,
       bodega: "Combo",
-      tipo: "Combo", // Tipo especial para combos
+      tipo: "Combo", 
       varietal: `Combo de ${combo.wines.length} vinos`,
       price: combo.price,
       cost: 0,

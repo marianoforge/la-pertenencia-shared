@@ -7,7 +7,7 @@ import { sendError, sendSuccess, ApiResponse } from "@/lib/apiHelpers";
 import { ValidationError } from "@/lib/errors";
 import { logger } from "@/lib/logger";
 
-// Inicializar Resend con la API key
+
 const resend = new Resend(process.env.RESEND_API_KEY || "");
 
 interface ContactFormData {
@@ -28,12 +28,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponse>,
 ) {
-  // Solo aceptar POST requests
+  
   if (req.method !== "POST") {
     return sendError(res, new Error("Method not allowed"), "Método no permitido");
   }
 
-  // Rate limiting
+  
   const rateLimitResult = apiRateLimit(req);
   if (!rateLimitResult.success) {
     return res.status(429).json({
@@ -46,30 +46,30 @@ export default async function handler(
     const { nombre, apellido, email, motivo, consulta }: ContactFormData =
       req.body;
 
-    // Validación básica
+    
     if (!nombre || !apellido || !email || !motivo || !consulta) {
       throw new ValidationError("Todos los campos son requeridos");
     }
 
-    // Sanitizar inputs
+    
     const sanitizedNombre = sanitizeText(nombre);
     const sanitizedApellido = sanitizeText(apellido);
     const sanitizedEmail = sanitizeEmail(email);
     const sanitizedMotivo = sanitizeText(motivo);
     const sanitizedConsulta = sanitizeText(consulta);
 
-    // Validar formato de email
+    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(sanitizedEmail)) {
       throw new ValidationError("Email inválido");
     }
 
-    // Enviar email usando Resend
+    
     const { data, error } = await resend.emails.send({
       from: "La Pertenencia <onboarding@resend.dev>",
       to: ["info@lapertenencia.com"],
-      replyTo: sanitizedEmail, // El email del cliente para poder responder fácilmente
+      replyTo: sanitizedEmail, 
       subject: `Nuevo mensaje de contacto: ${sanitizedMotivo}`,
       html: `
         <!DOCTYPE html>

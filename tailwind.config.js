@@ -1,6 +1,6 @@
 import { heroui } from "@heroui/theme";
 
-/** @type {import('tailwindcss').Config} */
+
 const config = {
   content: [
     "./layouts/**/*.{js,ts,jsx,tsx,mdx}",
@@ -66,7 +66,7 @@ const config = {
         ],
       },
       colors: {
-        // Theme colors from the provided image
+        
         "negro-puro": "#000000",
         "blanco-puro": "#FFFFFF",
         "negro-base": "#111111",
@@ -78,7 +78,7 @@ const config = {
         "dorado-light": "#FEBB41",
         "dorado-dark": "#9B6502",
 
-        // CSS variables for theme switching
+        
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {

@@ -1,6 +1,4 @@
-/**
- * Helpers para API routes - Respuestas consistentes y manejo de errores
- */
+
 
 import { NextApiResponse } from 'next';
 import { AppError } from '@/lib/errors';

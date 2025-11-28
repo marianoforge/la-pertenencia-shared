@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000, // 1 minuto
+            staleTime: 60 * 1000, 
             retry: 2,
           },
         },

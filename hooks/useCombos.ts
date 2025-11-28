@@ -147,9 +147,9 @@ export const deleteCombo = async (id: string): Promise<void> => {
   }
 };
 
-// Hooks de React Query
 
-// Hook para obtener todos los combos
+
+
 export const useCombos = () => {
   return useQuery({
     queryKey: ["combos"],
@@ -198,10 +198,10 @@ export function useUpdateCombo() {
     mutationFn: ({ id, ...data }: { id: string } & Partial<Combo>) =>
       updateCombo(id, data),
     onSuccess: (updatedCombo) => {
-      // Invalidar queries de combos
+      
       queryClient.invalidateQueries({ queryKey: ["combos"] });
 
-      // Actualizar el combo específico en el cache
+      
       queryClient.setQueryData(["combo", updatedCombo.id], updatedCombo);
 
       console.log("Combo updated successfully:", updatedCombo.name);

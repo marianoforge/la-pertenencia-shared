@@ -77,7 +77,7 @@ export default function OrdersAdminPanel() {
 
   return (
     <div className="space-y-6">
-      {/* Header con estadísticas */}
+      {}
       <AdminStats
         stats={[
           { label: "Total", value: orderStats.total },
@@ -105,7 +105,7 @@ export default function OrdersAdminPanel() {
         ]}
       />
 
-      {/* Filtros */}
+      {}
       <Card className="p-4 shadow-sm">
         <OrderFilters
           selectedStatus={filterStatus}
@@ -113,7 +113,7 @@ export default function OrdersAdminPanel() {
         />
       </Card>
 
-      {/* Lista de pedidos */}
+      {}
       {filteredOrders.length === 0 ? (
         <AdminEmptyState
           actionLabel="Ver todos los pedidos"
@@ -130,7 +130,7 @@ export default function OrdersAdminPanel() {
         </Card>
       )}
 
-      {/* Modal de detalles */}
+      {}
       <OrderDetailModal
         isOpen={!!selectedOrder}
         order={selectedOrder}

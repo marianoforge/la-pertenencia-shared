@@ -58,7 +58,7 @@ const WineFilters = ({ onFiltersChange, onSortChange }: WineFiltersProps) => {
 
   return (
     <div className="self-stretch py-5 rounded-sm border-t border-neutral-400 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 lg:gap-0 overflow-visible">
-      {/* Ordenar por */}
+      {}
       <div className="flex flex-col sm:flex-row sm:justify-start sm:items-center gap-2 sm:gap-5">
         <div className="text-black text-sm md:text-base font-normal font-['Lora'] tracking-wide whitespace-nowrap">
           Ordenar por:
@@ -77,7 +77,7 @@ const WineFilters = ({ onFiltersChange, onSortChange }: WineFiltersProps) => {
         />
       </div>
 
-      {/* Filtrar por */}
+      {}
       <div className="flex flex-col lg:flex-row lg:justify-start lg:items-center gap-4 lg:gap-5">
         <div className="text-black text-sm md:text-base font-normal font-['Lora'] tracking-wide whitespace-nowrap">
           Filtrar por:

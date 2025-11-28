@@ -13,7 +13,7 @@ const Hero = () => {
         paddingBottom: "clamp(2.5rem, 8vw, 0rem)",
       }}
     >
-      {/* Background Image */}
+      {}
       <div className="w-full h-full absolute inset-0 overflow-hidden">
         <Image
           fill
@@ -24,7 +24,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent lg:bg-gradient-to-l lg:from-black/10 lg:via-black/0 lg:to-transparent" />
       </div>
 
-      {/* Content - Mobile/Tablet Layout */}
+      {}
       <div
         className="relative z-10 w-full flex-col justify-start items-center fluid-hero-mobile"
         style={{
@@ -33,7 +33,7 @@ const Hero = () => {
           gap: "clamp(1.25rem, 4vw, 2rem)",
         }}
       >
-        {/* Logo */}
+        {}
         <div
           className="relative overflow-hidden flex items-center justify-center"
           data-aos="fade-up"
@@ -53,7 +53,7 @@ const Hero = () => {
           />
         </div>
 
-        {/* Text Content */}
+        {}
         <div
           className="w-full flex flex-col justify-start items-center"
           style={{
@@ -107,14 +107,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Content - Desktop Layout */}
+      {}
       <div
         className="relative z-10 w-full max-w-[1300px] fluid-hero-desktop"
         style={{
           height: "clamp(25rem, 40vw, 35rem)",
         }}
       >
-        {/* Text Column */}
+        {}
         <div
           className="flex flex-col justify-start items-start"
           style={{
@@ -188,7 +188,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Logo Column */}
+        {}
         <div
           className="relative ml-auto flex items-center justify-center overflow-hidden"
           style={{

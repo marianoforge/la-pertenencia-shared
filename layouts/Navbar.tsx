@@ -9,7 +9,7 @@ const experienciasItems = [
   { name: "MEMBRESÍAS", href: "/membresias" },
   { name: "CATAS", href: "/catas" },
   { name: "CREA TU VINO", href: "/crea-tu-vino" },
-  // { name: "ESPACIO LA PERTENENCIA", href: "/espacio-la-pertenencia" },
+  
 ];
 
 const menuItems = [
@@ -21,7 +21,7 @@ const menuItems = [
     hasDropdown: true,
     dropdownItems: experienciasItems,
   },
-  // { name: "ACERCA DE NOSOTROS", href: "/about" },
+  
   { name: "CONTACTO", href: "#contacto" },
 ];
 
@@ -32,7 +32,7 @@ export const Navbar = () => {
   return (
     <div className="w-full bg-stone-900 sticky top-0 z-50">
       <div className="fluid-navbar-padding py-3 flex justify-between items-center">
-        {/* Logo */}
+        {}
         <div
           className="relative"
           style={{ width: "clamp(8rem, 12vw, 10rem)", height: "0.875rem" }}
@@ -49,12 +49,12 @@ export const Navbar = () => {
           </NextLink>
         </div>
 
-        {/* Right side - Desktop Menu + Icons */}
+        {}
         <div
           className="flex justify-start items-center"
           style={{ gap: "clamp(1rem, 2vw, 1.5rem)" }}
         >
-          {/* Desktop Menu - Fluid visibility */}
+          {}
           <div className="fluid-menu-hide justify-start items-center fluid-gap">
             {menuItems.map((item) => (
               <div key={item.name} className="relative">
@@ -143,18 +143,18 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Vertical separator - Desktop only */}
+          {}
           <div className="fluid-menu-hide w-5 h-0 rotate-90 outline outline-[0.5px] outline-offset-[-0.41px] outline-white" />
 
-          {/* Icons */}
+          {}
           <div className="flex justify-start items-center gap-4">
-            {/* Cart Icon */}
+            {}
             <CartButton />
 
-            {/* Vertical separator - Mobile only */}
+            {}
             <div className="fluid-menu-show w-5 h-0 rotate-90 outline outline-[0.81px] outline-offset-[-0.41px] outline-white" />
 
-            {/* Menu hamburger - Mobile only */}
+            {}
             <motion.button
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               className="fluid-menu-show w-6 h-6 hover:opacity-75 transition-opacity"
@@ -181,7 +181,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Only visible on smaller screens */}
+      {}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

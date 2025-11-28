@@ -19,7 +19,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponse<Wine[] | Wine>>,
 ) {
-  // Rate limiting
+  
   const rateLimitResult = apiRateLimit(req);
   if (!rateLimitResult.success) {
     return res.status(429).json({
@@ -35,7 +35,7 @@ export default async function handler(
 
       let wines: Wine[];
 
-      // Optimizar consultas usando funciones específicas de Firebase
+      
       if (search) {
         wines = await searchWinesByName(String(search));
       } else if (category && category !== "all") {
@@ -46,7 +46,7 @@ export default async function handler(
         wines = await getAllWines();
       }
 
-      // Aplicar filtros adicionales localmente
+      
       let filteredWines = wines;
 
       if (region && region !== "all") {
@@ -71,7 +71,7 @@ export default async function handler(
     }
   } else if (req.method === "POST") {
     try {
-      // Validar con Zod
+      
       const validationResult = createWineSchema.safeParse(req.body);
 
       if (!validationResult.success) {
@@ -83,10 +83,10 @@ export default async function handler(
 
       const wineData = validationResult.data;
 
-      // Crear vino en Firebase
+      
       const wineId = await addWine(wineData);
 
-      // Obtener el vino recién creado para devolver con ID
+      
       const newWine = await getWineById(wineId);
 
       return sendSuccess(res, newWine, 201);

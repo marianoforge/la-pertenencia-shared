@@ -30,21 +30,21 @@ export default async function handler(
     try {
       const updateData: UpdateWineInput = req.body;
 
-      // Verificar que el vino existe antes de actualizar
+      
       const existingWine = await getWineById(id);
 
       if (!existingWine) {
         return res.status(404).json({ error: "Wine not found" });
       }
 
-      // Actualizar el vino en Firebase
+      
       const success = await updateWine(id, updateData);
 
       if (!success) {
         return res.status(500).json({ error: "Failed to update wine" });
       }
 
-      // Obtener el vino actualizado
+      
       const updatedWine = await getWineById(id);
 
       res.status(200).json(updatedWine);
@@ -54,14 +54,14 @@ export default async function handler(
     }
   } else if (req.method === "DELETE") {
     try {
-      // Verificar que el vino existe antes de eliminar
+      
       const existingWine = await getWineById(id);
 
       if (!existingWine) {
         return res.status(404).json({ error: "Wine not found" });
       }
 
-      // Eliminar el vino de Firebase
+      
       const success = await deleteWine(id);
 
       if (!success) {

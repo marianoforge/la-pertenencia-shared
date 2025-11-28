@@ -24,7 +24,7 @@ export default async function handler(
 
     const results = [];
 
-    // Procesar cada item para reducir stock
+    
     for (const item of items) {
       const result = await reduceWineStockServerSide(
         item.wine_id,

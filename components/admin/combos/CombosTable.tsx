@@ -57,9 +57,9 @@ export const CombosTable: React.FC<CombosTableProps> = ({
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {combos.map((combo) => {
-            // No podemos calcular el precio individual sin los datos completos de los vinos
-            // Por ahora mostramos solo el precio del combo
-            const discount = 0; // Placeholder - necesitaríamos los vinos completos para calcularlo
+            
+            
+            const discount = 0; 
 
             return (
               <tr key={combo.id} className="hover:bg-gray-50">

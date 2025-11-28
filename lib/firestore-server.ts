@@ -1,10 +1,10 @@
-// Este archivo es SOLO para operaciones del servidor (API routes, webhooks)
-// NO importar en componentes del cliente
+
+
 
 import { db as adminDb } from "@/lib/firebaseAdmin";
 import { Wine } from "@/types/wine";
 
-// Collection names
+
 const COLLECTIONS = {
   WINES: "wines",
   ORDERS: "orders",
@@ -12,11 +12,7 @@ const COLLECTIONS = {
   CATEGORIES: "categories",
 } as const;
 
-/**
- * 🔧 Server-side function to reduce wine stock using Admin SDK
- * Esta función bypassa las reglas de seguridad y está destinada para
- * operaciones del servidor como webhooks de MercadoPago
- */
+
 export const reduceWineStockServerSide = async (
   wineId: string,
   quantity: number,
@@ -24,7 +20,7 @@ export const reduceWineStockServerSide = async (
   try {
     const wineDoc = adminDb.collection(COLLECTIONS.WINES).doc(wineId);
 
-    // Usar transacción con Admin SDK
+    
     const result = await adminDb.runTransaction(async (transaction) => {
       const wineSnapshot = await transaction.get(wineDoc);
 
@@ -43,7 +39,7 @@ export const reduceWineStockServerSide = async (
 
       const newStock = currentStock - quantity;
 
-      // Update the wine document with new stock
+      
       transaction.update(wineDoc, {
         stock: newStock,
         updatedAt: new Date().toISOString(),

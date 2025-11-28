@@ -6,7 +6,7 @@ import { Section, SectionHeader } from "./ui";
 export default function CatasSection() {
   return (
     <>
-      {/* Hero Section with Background Image */}
+      {}
       <Section className="!p-0" variant="default">
         <div className="w-full max-w-[1300px] pt-10 mb-10">
           <div data-aos="fade-up">
@@ -30,7 +30,7 @@ export default function CatasSection() {
         </div>
       </Section>
 
-      {/* Content Section */}
+      {}
       <Section className="lg:!px-0 lg:!py-16" variant="default">
         <div className="w-full max-w-[1300px] flex flex-col justify-start items-start gap-5 italic">
           <div className="w-full text-neutral-900 text-lg md:text-xl font-semibold font-['Lora'] leading-relaxed md:leading-loose tracking-wide">
@@ -56,7 +56,7 @@ export default function CatasSection() {
         </div>
 
         <div className="w-full max-w-[1300px] py-5 flex flex-col lg:flex-row justify-center items-start gap-10 italic">
-          {/* Left Content */}
+          {}
           <div
             className="flex-1 w-full flex flex-col justify-start items-start gap-2.5"
             data-aos="fade-right"
@@ -99,7 +99,7 @@ export default function CatasSection() {
             </a>
           </div>
 
-          {/* Right Image */}
+          {}
           <div
             className="w-full lg:w-[679px] flex flex-col justify-center items-start gap-2.5 italic "
             data-aos="fade-left"

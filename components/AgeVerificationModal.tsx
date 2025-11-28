@@ -4,7 +4,7 @@ const AgeVerificationModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Verificar si ya se ha confirmado la edad en esta sesión
+    
     const hasConfirmedAge = sessionStorage.getItem("ageConfirmed");
 
     if (!hasConfirmedAge) {
@@ -18,7 +18,7 @@ const AgeVerificationModal = () => {
   };
 
   const handleDeny = () => {
-    // Redirigir a una página de error o cerrar la aplicación
+    
     window.location.href = "https://www.google.com";
   };
 
@@ -26,10 +26,10 @@ const AgeVerificationModal = () => {
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
-      {/* Overlay con fondo opaco */}
+      {}
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" />
 
-      {/* Modal */}
+      {}
       <div className="relative w-80 md:w-[28rem] lg:w-[32rem] h-60 sm:h-52 md:h-44 p-7 py-8 bg-neutral-50 rounded-sm flex flex-col justify-start items-start gap-2.5 overflow-hidden mx-4">
         <div className="self-stretch flex flex-col justify-center items-start gap-2.5">
           <div className="self-stretch pb-5 inline-flex justify-between items-center">

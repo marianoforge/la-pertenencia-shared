@@ -13,7 +13,7 @@ import {
 import { getStorage } from "firebase/storage";
 import { env } from "@/config/env";
 
-// Firebase configuration - validated via env.ts
+
 const firebaseConfig = {
   apiKey: env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -28,7 +28,7 @@ const app = initializeApp(firebaseConfig);
 
 let db: Firestore;
 
-// 🔹 Solo inicializar IndexedDB en el cliente
+
 if (typeof window !== "undefined") {
   try {
     db = initializeFirestore(app, {
@@ -42,7 +42,7 @@ if (typeof window !== "undefined") {
     }
   }
 } else {
-  // En el servidor, usa Firestore sin persistencia
+  
   db = getFirestore(app);
 }
 

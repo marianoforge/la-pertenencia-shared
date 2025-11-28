@@ -24,10 +24,10 @@ export const FilterBarMobile: React.FC<FilterBarMobileProps> = ({
 
   return (
     <div className="flex md:hidden flex-col gap-3">
-      {/* Search Input */}
+      {}
       <SearchInput value={searchTerm} onChange={onSearchChange} />
 
-      {/* Sort dropdown */}
+      {}
       <div className="flex items-center gap-3 justify-end">
         <span className="text-neutral-900 text-sm font-normal font-['Lora'] tracking-wide">
           Ordenar por:
@@ -51,7 +51,7 @@ export const FilterBarMobile: React.FC<FilterBarMobileProps> = ({
           </button>
         </div>
 
-        {/* Filter button */}
+        {}
         <button
           aria-label="Mostrar filtros"
           className="flex items-center gap-2 px-3 py-2 hover:bg-neutral-100 rounded-sm transition-colors"

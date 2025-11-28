@@ -15,13 +15,13 @@ export default async function handler(
   try {
     const { items, payer } = req.body;
 
-    // Detectar si usar credenciales de TEST o producción
+    
     const useTestCredentials = !!process.env.MERCADOPAGO_ACCESS_TOKEN_TEST;
     const accessToken = useTestCredentials
       ? process.env.MERCADOPAGO_ACCESS_TOKEN_TEST!
       : process.env.MERCADOPAGO_ACCESS_TOKEN!;
 
-    // Configurar Mercado Pago con un idempotencyKey único para cada request
+    
     const client = new MercadoPagoConfig({
       accessToken: accessToken,
       options: {
@@ -32,11 +32,11 @@ export default async function handler(
 
     const preference = new Preference(client);
 
-    // Obtener URLs dinámicas
+    
     const returnUrls = getReturnUrls();
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-    // Para testing con localhost, usar URLs de ejemplo válidas
+    
     const isLocalhost = baseUrl.includes("localhost");
     const validReturnUrls = isLocalhost
       ? {
@@ -46,10 +46,10 @@ export default async function handler(
         }
       : returnUrls;
 
-    // Generar un ID único para la orden
+    
     const orderId = `ORDER-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
 
-    // Crear la preferencia de pago
+    
     const preferenceData = {
       items: items.map((item: any) => ({
         id: item.id,
@@ -58,15 +58,15 @@ export default async function handler(
         quantity: item.quantity,
         unit_price: item.unit_price,
         currency_id: "ARS",
-        category_id: "MLA1403", // Alimentos y Bebidas (Argentina) - mejora aprobación
+        category_id: "MLA1403", 
       })),
       back_urls: validReturnUrls,
       external_reference: orderId,
-      // Solo agregar notification_url si no es localhost
+      
       ...(isLocalhost
         ? {}
         : { notification_url: `${baseUrl}/api/mercadopago/webhook` }),
-      // Agregar información del comprador si existe
+      
       ...(payer &&
         (payer.phone || payer.address) && {
           payer: {
@@ -92,7 +92,7 @@ export default async function handler(
           wine_id: item.id,
           quantity: item.quantity,
         })),
-        // Agregar información de envío al metadata para que esté disponible
+        
         ...(payer &&
           (payer.phone || payer.address) && {
             shipping_info: {
@@ -106,7 +106,7 @@ export default async function handler(
       },
     };
 
-    // Log para debugging - ver qué datos se están enviando
+    
     logger.info("Creando preferencia de pago", {
       order_id: orderId,
       total_items: items.length,
@@ -116,10 +116,10 @@ export default async function handler(
 
     const result = await preference.create({ body: preferenceData });
 
-    // Detectar si estamos usando credenciales de producción o test
+    
     const isProduction = !useTestCredentials;
 
-    // Usar el init_point correcto según el tipo de credenciales
+    
     const initPoint = isProduction
       ? result.init_point
       : result.sandbox_init_point;
@@ -128,7 +128,7 @@ export default async function handler(
       preferenceId: result.id,
       initPoint: initPoint,
       isProduction: isProduction,
-      // Mantener ambos por compatibilidad (opcional)
+      
       init_point: result.init_point,
       sandbox_init_point: result.sandbox_init_point,
     });

@@ -3,7 +3,7 @@ import { Wine } from "./wine";
 export interface CartItem {
   wine: Wine;
   quantity: number;
-  priceAtTimeOfAdd: number; // Precio con IVA al momento de agregar
+  priceAtTimeOfAdd: number; 
 }
 
 export interface ShippingInfo {

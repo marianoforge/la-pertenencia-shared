@@ -36,7 +36,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
   const selectedWineIds = combo.selectedWineIds || [];
   const selectedWines = wines.filter((w) => selectedWineIds.includes(w.id));
 
-  // Calcular precio sugerido basado en vinos seleccionados
+  
   const suggestedPrice = selectedWines.reduce(
     (sum, wine) => sum + wine.price,
     0
@@ -46,7 +46,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
       ? ((suggestedPrice - combo.price) / suggestedPrice) * 100
       : 0;
 
-  // Filtrar vinos por búsqueda
+  
   const filteredWines = wines.filter(
     (wine) =>
       wine.marca.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -63,7 +63,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
 
   return (
     <form className="space-y-6" onSubmit={onSubmit}>
-      {/* Información Básica */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Información del Combo</h3>
         <div className="space-y-4">
@@ -118,7 +118,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
         </div>
       </section>
 
-      {/* Selección de Vinos */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">
           Vinos del Combo ({selectedWines.length})
@@ -171,7 +171,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
         </div>
       </section>
 
-      {/* Imágenes */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Imágenes</h3>
         <div className="space-y-4">
@@ -189,7 +189,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
         </div>
       </section>
 
-      {/* Destacado */}
+      {}
       <section>
         <Switch
           isSelected={combo.featured || false}
@@ -199,7 +199,7 @@ export const ComboForm: React.FC<ComboFormProps> = ({
         </Switch>
       </section>
 
-      {/* Botones */}
+      {}
       <div className="flex gap-3 justify-end border-t pt-4">
         <Button color="default" variant="light" onPress={onCancel}>
           Cancelar

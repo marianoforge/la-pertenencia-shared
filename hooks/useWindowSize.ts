@@ -24,7 +24,7 @@ export const useWindowSize = (options: UseWindowSizeOptions = {}) => {
   });
 
   useEffect(() => {
-    // Handler to call on window resize
+    
     const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
@@ -32,20 +32,20 @@ export const useWindowSize = (options: UseWindowSizeOptions = {}) => {
       });
     };
 
-    // Debounced version of handleResize
+    
     let timeoutId: NodeJS.Timeout;
     const debouncedHandleResize = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(handleResize, debounceMs);
     };
 
-    // Set initial size
+    
     handleResize();
 
-    // Add event listener
+    
     window.addEventListener("resize", debouncedHandleResize);
 
-    // Remove event listener on cleanup
+    
     return () => {
       window.removeEventListener("resize", debouncedHandleResize);
       clearTimeout(timeoutId);
@@ -55,7 +55,7 @@ export const useWindowSize = (options: UseWindowSizeOptions = {}) => {
   return windowSize;
 };
 
-// Helper hook specifically for responsive layouts
+
 export const useResponsiveLayout = () => {
   const { width } = useWindowSize();
 
@@ -66,7 +66,7 @@ export const useResponsiveLayout = () => {
     isDesktop: width >= 1280,
   };
 
-  // Helper function to get items per page based on screen size
+  
   const getItemsPerPage = (
     mobileCount = 1,
     tabletCount = 1,

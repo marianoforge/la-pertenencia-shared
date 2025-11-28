@@ -8,7 +8,7 @@ interface FilterState {
   filters: WineFilters;
   sortBy: string;
 
-  // Actions
+  
   toggleFilters: () => void;
   closeFilters: () => void;
   updateFilters: (newFilters: WineFilters) => void;

@@ -26,7 +26,7 @@ export const WineForm: React.FC<WineFormProps> = ({
   onFileSelect,
   onCancel,
 }) => {
-  // Calcular ganancia usando helper
+  
   const { profit, profitPercentage, priceWithTax } = calculateWineProfit(
     wine.price || 0,
     wine.cost || 0,
@@ -35,7 +35,7 @@ export const WineForm: React.FC<WineFormProps> = ({
 
   return (
     <form className="space-y-6" onSubmit={onSubmit}>
-      {/* Información Básica */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Información Básica</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -144,7 +144,7 @@ export const WineForm: React.FC<WineFormProps> = ({
         </div>
       </section>
 
-      {/* Descripción y Maridaje */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Descripción y Maridaje</h3>
         <div className="space-y-4">
@@ -191,7 +191,7 @@ export const WineForm: React.FC<WineFormProps> = ({
         </div>
       </section>
 
-      {/* Precios y Costos */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Precios y Costos</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -238,7 +238,7 @@ export const WineForm: React.FC<WineFormProps> = ({
           />
         </div>
 
-        {/* Cálculo de Ganancia */}
+        {}
         {wine.price && wine.cost && (
           <div className="mt-4 p-4 bg-blue-50 rounded-lg">
             <h4 className="text-sm font-semibold text-blue-900 mb-2">
@@ -266,7 +266,7 @@ export const WineForm: React.FC<WineFormProps> = ({
         )}
       </section>
 
-      {/* Stock */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Inventario</h3>
         <Input
@@ -282,7 +282,7 @@ export const WineForm: React.FC<WineFormProps> = ({
         />
       </section>
 
-      {/* Imagen */}
+      {}
       <section>
         <h3 className="text-lg font-semibold mb-4">Imagen</h3>
         <ImageUploader
@@ -292,7 +292,7 @@ export const WineForm: React.FC<WineFormProps> = ({
         />
       </section>
 
-      {/* Destacado */}
+      {}
       <section>
         <Switch
           isSelected={wine.featured || false}
@@ -302,7 +302,7 @@ export const WineForm: React.FC<WineFormProps> = ({
         </Switch>
       </section>
 
-      {/* Botones */}
+      {}
       <div className="flex gap-3 justify-end border-t pt-4">
         <Button color="default" variant="light" onPress={onCancel}>
           Cancelar

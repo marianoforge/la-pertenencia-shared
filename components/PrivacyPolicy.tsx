@@ -48,14 +48,14 @@ const PrivacyPolicy = () => {
         {privacyPolicies.map((policy, index) => (
           <React.Fragment key={index}>
             <div className="w-full flex flex-col justify-start items-start gap-2.5">
-              {/* Title */}
+              {}
               <div className="w-full">
                 <div className="w-full justify-start text-yellow-700 text-sm md:text-base font-semibold font-['Lora'] uppercase tracking-[3px] md:tracking-[4px]">
                   {policy.title}
                 </div>
               </div>
 
-              {/* Content */}
+              {}
               <div className="w-full pt-1.5">
                 <div className="w-full justify-start text-neutral-900 text-sm md:text-base font-normal font-['Lora'] leading-normal tracking-wide">
                   {policy.content.includes("info@lapertenencia.com") ? (
@@ -76,7 +76,7 @@ const PrivacyPolicy = () => {
               </div>
             </div>
 
-            {/* Divider - only show if not the last item */}
+            {}
             {index < privacyPolicies.length - 1 && (
               <div className="w-full h-0 border-b border-neutral-400 border-opacity-50" />
             )}

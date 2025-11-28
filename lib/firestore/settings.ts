@@ -1,6 +1,4 @@
-/**
- * ⚙️ Site Settings Functions
- */
+
 
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -16,7 +14,7 @@ export interface SiteSettings {
   shippingCost: number;
 }
 
-// Get site settings
+
 export const getSiteSettings = async (): Promise<SiteSettings> => {
   try {
     const settingsRef = doc(db, COLLECTION, DOCUMENT_ID);
@@ -26,14 +24,14 @@ export const getSiteSettings = async (): Promise<SiteSettings> => {
       return settingsDoc.data() as SiteSettings;
     }
 
-    // Return default settings if document doesn't exist
+    
     return {
       shippingEnabled: true,
       shippingCost: 500,
     };
   } catch (error) {
     logger.error("Error fetching site settings", error);
-    // Return default settings on error
+    
     return {
       shippingEnabled: true,
       shippingCost: 500,
@@ -41,7 +39,7 @@ export const getSiteSettings = async (): Promise<SiteSettings> => {
   }
 };
 
-// Update site settings
+
 export const updateSiteSettings = async (
   settings: Partial<SiteSettings>,
 ): Promise<boolean> => {

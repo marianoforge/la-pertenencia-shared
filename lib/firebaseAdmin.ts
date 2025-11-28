@@ -2,14 +2,14 @@ import admin from "firebase-admin";
 import { env } from "@/config/env";
 import { logger } from "@/lib/logger";
 
-// Verificar que las variables de entorno necesarias estén presentes
+
 const requiredEnvVars = {
   projectId: env.FIREBASE_PROJECT_ID,
   privateKey: env.FIREBASE_PRIVATE_KEY,
   clientEmail: env.FIREBASE_CLIENT_EMAIL,
 };
 
-// Validar variables de entorno (solo para server-side)
+
 const missingVars = Object.entries(requiredEnvVars)
   .filter(([, value]) => !value)
   .map(([key]) => key);

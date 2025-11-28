@@ -1,33 +1,19 @@
-/**
- * Validación de variables de entorno con Zod
- * Falla al inicio si faltan variables requeridas
- */
-
 import { z } from 'zod';
 
 const envSchema = z.object({
-  // Firebase - Requeridas
   NEXT_PUBLIC_FIREBASE_API_KEY: z.string().min(1, 'Firebase API Key is required'),
   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: z.string().min(1, 'Firebase Auth Domain is required'),
   NEXT_PUBLIC_FIREBASE_PROJECT_ID: z.string().min(1, 'Firebase Project ID is required'),
   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: z.string().min(1, 'Firebase Storage Bucket is required'),
   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: z.string().min(1, 'Firebase Messaging Sender ID is required'),
   NEXT_PUBLIC_FIREBASE_APP_ID: z.string().min(1, 'Firebase App ID is required'),
-  
-  // Firebase - Opcionales
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: z.string().optional(),
-
-  // Firebase Admin - Opcionales (solo para server-side)
   FIREBASE_PROJECT_ID: z.string().optional(),
   FIREBASE_PRIVATE_KEY: z.string().optional(),
   FIREBASE_CLIENT_EMAIL: z.string().optional(),
-
-  // MercadoPago - Opcionales
   NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY: z.string().optional(),
   MERCADOPAGO_ACCESS_TOKEN: z.string().optional(),
   MERCADOPAGO_ACCESS_TOKEN_TEST: z.string().optional(),
-
-  // App
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   NEXT_PUBLIC_BASE_URL: z.string().url().optional().or(z.literal('')),
 });
@@ -67,6 +53,5 @@ function getEnv(): EnvSchema {
   }
 }
 
-// Validar al importar el módulo
 export const env = getEnv();
 

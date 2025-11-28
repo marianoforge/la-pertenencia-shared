@@ -1,7 +1,4 @@
-/**
- * Ejemplo de componente que demuestra el uso de Firebase
- * Este archivo muestra cómo integrar autenticación, Firestore y Storage
- */
+
 
 "use client";
 
@@ -27,7 +24,7 @@ export default function FirebaseExample() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  // Cargar vinos al montar el componente
+  
   useEffect(() => {
     loadWines();
     loadFeaturedWines();
@@ -45,7 +42,7 @@ export default function FirebaseExample() {
     setFeaturedWines(featured);
   };
 
-  // Manejar login
+  
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -63,7 +60,7 @@ export default function FirebaseExample() {
     }
   };
 
-  // Manejar registro
+  
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -82,7 +79,7 @@ export default function FirebaseExample() {
     }
   };
 
-  // Agregar nuevo vino
+  
   const handleAddWine = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) {
@@ -94,7 +91,7 @@ export default function FirebaseExample() {
     setUploading(true);
     let imageUrl = "/images/default-wine.jpg";
 
-    // Subir imagen si se seleccionó una
+    
     if (selectedFile) {
       if (!validateImageFile(selectedFile)) {
         setUploading(false);
@@ -110,7 +107,7 @@ export default function FirebaseExample() {
       }
     }
 
-    // Crear el vino en Firestore
+    
     const wineData = {
       marca: newWine.marca,
       bodega: newWine.bodega,
@@ -119,7 +116,7 @@ export default function FirebaseExample() {
       description: newWine.description,
       price: newWine.price,
       image: imageUrl,
-      cost: Math.round(newWine.price * 0.6), // 60% del precio como costo
+      cost: Math.round(newWine.price * 0.6), 
       iva: 21,
       stock: 10,
       region: "Mendoza",
@@ -142,7 +139,7 @@ export default function FirebaseExample() {
         varietal: "Malbec",
       });
       setSelectedFile(null);
-      loadWines(); // Recargar lista
+      loadWines(); 
     }
 
     setUploading(false);
@@ -158,13 +155,13 @@ export default function FirebaseExample() {
         🔥 Firebase Integration Example
       </h1>
 
-      {/* Sección de Autenticación */}
+      {}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-semibold mb-4">🔐 Autenticación</h2>
 
         {!user ? (
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Login Form */}
+            {}
             <form className="space-y-4" onSubmit={handleLogin}>
               <h3 className="text-lg font-medium">Iniciar Sesión</h3>
               <input
@@ -189,7 +186,7 @@ export default function FirebaseExample() {
               </button>
             </form>
 
-            {/* SignUp Form */}
+            {}
             <form className="space-y-4" onSubmit={handleSignUp}>
               <h3 className="text-lg font-medium">Registrarse</h3>
               <input
@@ -242,7 +239,7 @@ export default function FirebaseExample() {
         )}
       </div>
 
-      {/* Agregar Vino (solo si está autenticado) */}
+      {}
       {user && (
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-2xl font-semibold mb-4">🍷 Agregar Vino</h2>
@@ -347,7 +344,7 @@ export default function FirebaseExample() {
         </div>
       )}
 
-      {/* Lista de Vinos Destacados */}
+      {}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-semibold mb-4">⭐ Vinos Destacados</h2>
 
@@ -370,7 +367,7 @@ export default function FirebaseExample() {
         </div>
       </div>
 
-      {/* Estadísticas */}
+      {}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-semibold mb-4">📊 Estadísticas</h2>
 

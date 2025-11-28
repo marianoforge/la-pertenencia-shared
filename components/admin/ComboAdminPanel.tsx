@@ -48,7 +48,7 @@ export default function ComboAdminPanel() {
   const [comboForm, setComboForm] =
     useState<ComboFormData>(DEFAULT_COMBO_VALUES);
 
-  // TanStack Query hooks
+  
   const {
     data: combos = [],
     isLoading: combosLoading,
@@ -61,7 +61,7 @@ export default function ComboAdminPanel() {
   const updateComboMutation = useUpdateCombo();
   const deleteComboMutation = useDeleteCombo();
 
-  // Paginación
+  
   const {
     currentPage,
     totalPages,
@@ -74,7 +74,7 @@ export default function ComboAdminPanel() {
     searchFields: ["name"],
   });
 
-  // Validar formulario
+  
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -94,7 +94,7 @@ export default function ComboAdminPanel() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Resetear formulario
+  
   const resetForm = () => {
     setComboForm(DEFAULT_COMBO_VALUES);
     setSelectedFile(null);
@@ -103,7 +103,7 @@ export default function ComboAdminPanel() {
     setErrors({});
   };
 
-  // Manejar cambios en el formulario
+  
   const handleInputChange = (field: string, value: any) => {
     setComboForm((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -111,7 +111,7 @@ export default function ComboAdminPanel() {
     }
   };
 
-  // Manejar submit del formulario
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -121,9 +121,9 @@ export default function ComboAdminPanel() {
 
     try {
       let imageUrl = comboForm.image || "/images/imagen-combos.png";
-      const backgroundImageUrl = "/images/fondo-combo.png"; // Fondo fijo
+      const backgroundImageUrl = "/images/fondo-combo.png"; 
 
-      // Subir imagen si se seleccionó una
+      
       if (selectedFile) {
         if (!validateImageFile(selectedFile)) {
           alert("Archivo de imagen no válido");
@@ -139,7 +139,7 @@ export default function ComboAdminPanel() {
         }
       }
 
-      // Obtener los vinos seleccionados
+      
       const selectedWines = comboForm.selectedWineIds.map((wineId) => {
         const wine = wines.find((w) => w.id === wineId);
         if (!wine) {
@@ -152,7 +152,7 @@ export default function ComboAdminPanel() {
         };
       });
 
-      // Crear objeto del combo
+      
       const comboData = {
         name: comboForm.name,
         wines: selectedWines,
@@ -186,7 +186,7 @@ export default function ComboAdminPanel() {
     setUploading(false);
   };
 
-  // Editar combo
+  
   const handleEdit = (combo: Combo) => {
     setComboForm({
       name: combo.name,
@@ -199,7 +199,7 @@ export default function ComboAdminPanel() {
     setShowForm(true);
   };
 
-  // Eliminar combo
+  
   const handleDelete = async (combo: Combo) => {
     if (confirmDelete(`el combo "${combo.name}"`)) {
       try {
@@ -212,7 +212,7 @@ export default function ComboAdminPanel() {
     }
   };
 
-  // Manejar autenticación y loading
+  
   if (loading) {
     return <AdminLoadingState message="Cargando..." />;
   }
@@ -221,12 +221,12 @@ export default function ComboAdminPanel() {
     return null;
   }
 
-  // Mostrar loading si están cargando los combos
+  
   if (combosLoading || winesLoading) {
     return <AdminLoadingState message="Cargando combos..." />;
   }
 
-  // Mostrar error si hay error al cargar combos
+  
   if (combosError) {
     return (
       <AdminEmptyState
@@ -238,7 +238,7 @@ export default function ComboAdminPanel() {
 
   return (
     <div className="space-y-6">
-      {/* Barra de búsqueda y botón agregar */}
+      {}
       <div className="flex gap-4 items-center">
         <div className="flex-1">
           <AdminSearchBar
@@ -257,7 +257,7 @@ export default function ComboAdminPanel() {
         </Button>
       </div>
 
-      {/* Lista de combos */}
+      {}
       {paginatedCombos.length === 0 ? (
         <AdminEmptyState
           actionLabel="Crear primer combo"
@@ -292,7 +292,7 @@ export default function ComboAdminPanel() {
         </>
       )}
 
-      {/* Modal de formulario */}
+      {}
       <Modal
         isDismissable={false}
         isOpen={showForm}

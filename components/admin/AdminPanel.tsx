@@ -9,7 +9,7 @@ import { Card } from "@heroui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
 
-// Lazy load admin panels para mejorar performance
+
 const WineAdminPanel = dynamic(() => import("./WineAdminPanel"), {
   loading: () => (
     <div className="flex items-center justify-center py-12">
@@ -63,14 +63,14 @@ export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState<TabType>("wines");
   const router = useRouter();
 
-  // Redirigir al login si no está autenticado
+  
   useEffect(() => {
     if (!authLoading && !user) {
       router.push("/login");
     }
   }, [user, authLoading, router]);
 
-  // Manejar estados de carga
+  
   if (authLoading || adminLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -82,14 +82,14 @@ export default function AdminPanel() {
     );
   }
 
-  // Si no hay usuario (no debería llegar aquí por el useEffect)
+  
   if (!user) {
     return null;
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
+      {}
       <div className="bg-white shadow-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
@@ -133,7 +133,7 @@ export default function AdminPanel() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Tabs de navegación */}
+        {}
         <Card className="mb-6 shadow-sm">
           <div className="px-6 py-4">
             <div className="flex space-x-1">
@@ -181,7 +181,7 @@ export default function AdminPanel() {
           </div>
         </Card>
 
-        {/* Contenido de las tabs */}
+        {}
         {activeTab === "wines" && <WineAdminPanel />}
         {activeTab === "combos" && <ComboAdminPanel />}
         {activeTab === "suscriptos" && <SuscriptosAdminPanel />}

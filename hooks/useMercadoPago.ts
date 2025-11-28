@@ -33,7 +33,7 @@ interface CreatePreferenceResponse {
   preferenceId: string;
   initPoint: string;
   isProduction: boolean;
-  // Mantener por compatibilidad
+  
   init_point: string;
   sandbox_init_point: string;
 }
@@ -51,7 +51,7 @@ export const useMercadoPago = () => {
     setError(null);
 
     try {
-      // Transformar items del carrito a formato Mercado Pago
+      
       const items: MercadoPagoItem[] = cartItems.map((item) => ({
         id: item.wine.id,
         title: `${item.wine.marca} - ${item.wine.bodega}`,
@@ -60,7 +60,7 @@ export const useMercadoPago = () => {
         unit_price: item.priceAtTimeOfAdd,
       }));
 
-      // Agregar costo de envío como un item si existe
+      
       if (shippingCost && shippingCost > 0) {
         items.push({
           id: "shipping",
@@ -103,7 +103,7 @@ export const useMercadoPago = () => {
   };
 
   const redirectToCheckout = (initPoint: string) => {
-    // Redirigir a Mercado Pago
+    
     window.location.href = initPoint;
   };
 

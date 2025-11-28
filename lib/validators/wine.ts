@@ -1,6 +1,4 @@
-/**
- * Validación de vinos con Zod
- */
+
 
 import { z } from 'zod';
 

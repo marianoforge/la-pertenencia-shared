@@ -57,7 +57,7 @@ const WineDetail = ({ wine, onAddToCart }: WineDetailProps) => {
             winery={wine.winery}
           />
 
-          {/* Right Column - Wine Information */}
+          {}
           <div className="w-full lg:w-1/2 xl:w-3/5 flex flex-col gap-6">
             <header className="self-stretch inline-flex flex-col justify-start items-start gap-5">
               <div className="self-stretch flex flex-col justify-start items-start gap-2.5">
@@ -100,7 +100,7 @@ const WineDetail = ({ wine, onAddToCart }: WineDetailProps) => {
               aria-label="Opciones de compra"
               className="self-stretch flex-1 flex flex-col justify-end items-start gap-2.5"
             >
-              {/* Label "Cajas por X:" */}
+              {}
               <p className="w-64 text-center mb-1 text-neutral-900 text-sm md:text-base font-medium font-['Lora'] tracking-wide">
                 Cajas por {wine.boxSize || 6} unidades
               </p>

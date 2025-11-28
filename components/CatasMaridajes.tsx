@@ -96,7 +96,7 @@ const CatasMaridajes = () => {
         </div>
       </div>
 
-      {/* Button for mobile - outside containers to be full width */}
+      {}
       <div className="w-full max-w-[1300px] max-[480px]:px-0 px-4 sm:px-0 max-[480px]:block hidden">
         <NextLink className="w-full" href="/catas">
           <Button variant="primary">todos los eventos</Button>

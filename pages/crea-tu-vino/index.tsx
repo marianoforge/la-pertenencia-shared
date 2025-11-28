@@ -5,10 +5,10 @@ import Contacto from "@/components/Contacto";
 export default function CreaTuVinoPage() {
   return (
     <DefaultLayout>
-      {/* Main Content */}
+      {}
       <CreaTuVinoSection />
 
-      {/* Contact Section */}
+      {}
       <Contacto />
     </DefaultLayout>
   );

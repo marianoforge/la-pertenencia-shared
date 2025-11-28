@@ -10,7 +10,7 @@ interface WineHeroProps {
 const WineHero = ({ featuredWine }: WineHeroProps) => {
   return (
     <>
-      {/* Desktop/Tablet Version */}
+      {}
       <div className="max-[720px]:hidden w-[1300px] h-[400px] relative bg-neutral-900 flex flex-col mx-auto overflow-hidden mt-6">
         <div className="relative">
           <div>
@@ -62,7 +62,7 @@ const WineHero = ({ featuredWine }: WineHeroProps) => {
         </div>
       </div>
 
-      {/* Mobile Version */}
+      {}
       <div className="min-[721px]:hidden w-full max-w-[1300px] mx-auto mt-6">
         <div className="w-full wine-banner-container relative">
           <img

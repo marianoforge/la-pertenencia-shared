@@ -9,11 +9,11 @@ export default function WineDetailPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  // Esperar a que el router esté listo antes de hacer la query
+  
   const wineId = typeof id === "string" ? id : "";
   const { data: wine, isLoading, error } = useWine(wineId);
 
-  // Mostrar loading mientras el router no esté listo o mientras carga
+  
   if (!router.isReady || isLoading) {
     return (
       <DefaultLayout>
@@ -57,7 +57,7 @@ export default function WineDetailPage() {
       <div className="bg-white min-h-screen">
         <WineDetail wine={wine} onAddToCart={() => {}} />
 
-        {/* Contact Form Section */}
+        {}
         <Contacto />
       </div>
     </DefaultLayout>

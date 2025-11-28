@@ -24,7 +24,7 @@ export const FilterBarDesktop: React.FC<FilterBarDesktopProps> = ({
 
   return (
     <div className="hidden md:flex justify-between items-center gap-3">
-      {/* Left side - Filter button */}
+      {}
       <button
         className="flex items-center gap-3 px-4 py-2 hover:bg-neutral-100 rounded-sm transition-colors"
         type="button"
@@ -42,14 +42,14 @@ export const FilterBarDesktop: React.FC<FilterBarDesktopProps> = ({
         />
       </button>
 
-      {/* Center - Search Input */}
+      {}
       <SearchInput
         className="flex-1 max-w-md mx-4"
         value={searchTerm}
         onChange={onSearchChange}
       />
 
-      {/* Right side - Sort dropdown */}
+      {}
       <div className="flex items-center gap-3">
         <span className="text-neutral-900 text-sm md:text-base font-normal font-['Lora'] tracking-wide">
           Ordenar por:

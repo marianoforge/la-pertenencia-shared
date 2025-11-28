@@ -21,7 +21,7 @@ export default function OtrosAdminPanel() {
     DEFAULT_SHIPPING_SETTINGS.shippingCost.toString()
   );
 
-  // Cargar configuración actual desde Firestore
+  
   useEffect(() => {
     loadSettings();
   }, []);
@@ -57,7 +57,7 @@ export default function OtrosAdminPanel() {
       await setDoc(settingsRef, newSettings, { merge: true });
       setSettings(newSettings);
 
-      // Mostrar confirmación
+      
       alert(
         enabled
           ? "Costo de envío habilitado correctamente"
@@ -122,7 +122,7 @@ export default function OtrosAdminPanel() {
             </p>
           </div>
 
-          {/* Sección de Envío */}
+          {}
           <div className="border-t border-gray-200 pt-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               📦 Configuración de Envío
@@ -174,7 +174,7 @@ export default function OtrosAdminPanel() {
                   </div>
                 </div>
 
-                {/* Indicador visual del estado */}
+                {}
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="flex items-center gap-3">
                     <div
@@ -203,7 +203,7 @@ export default function OtrosAdminPanel() {
               </div>
             </Card>
 
-            {/* Configuración del Monto de Envío */}
+            {}
             <Card className="bg-gray-50 border border-gray-200 mt-4">
               <div className="p-6">
                 <div className="flex items-start justify-between gap-6">
@@ -251,7 +251,7 @@ export default function OtrosAdminPanel() {
                   </div>
                 </div>
 
-                {/* Vista previa del costo */}
+                {}
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
@@ -266,7 +266,7 @@ export default function OtrosAdminPanel() {
               </div>
             </Card>
 
-            {/* Información adicional */}
+            {}
             <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 mt-0.5">

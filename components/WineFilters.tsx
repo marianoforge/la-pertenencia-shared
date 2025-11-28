@@ -64,7 +64,7 @@ const WineFilters = ({
   return (
     <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-8">
       <div className="flex flex-col lg:flex-row gap-4 items-end">
-        {/* Búsqueda */}
+        {}
         <div className="flex-1 lg:max-w-md">
           <Input
             placeholder="Buscar vinos..."
@@ -75,7 +75,7 @@ const WineFilters = ({
           />
         </div>
 
-        {/* Categoría */}
+        {}
         <div className="w-full lg:w-48">
           <select
             className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
@@ -90,7 +90,7 @@ const WineFilters = ({
           </select>
         </div>
 
-        {/* Región */}
+        {}
         <div className="w-full lg:w-48">
           <select
             className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none"
@@ -105,7 +105,7 @@ const WineFilters = ({
           </select>
         </div>
 
-        {/* Rango de precio */}
+        {}
         <div className="flex gap-2 items-center w-full lg:w-auto">
           <Input
             className="w-24"
@@ -132,7 +132,7 @@ const WineFilters = ({
           />
         </div>
 
-        {/* Botón limpiar filtros */}
+        {}
         {hasActiveFilters && (
           <Button
             className="whitespace-nowrap"

@@ -1,6 +1,4 @@
-/**
- * 📧 Newsletter Subscription Functions
- */
+
 
 import {
   collection,
@@ -28,14 +26,14 @@ export interface NewsletterSubscription {
   unsubscribedAt?: string;
 }
 
-// Add newsletter subscription
+
 export const addNewsletterSubscription = async (
   email: string,
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     const suscriptosCollection = collection(db, COLLECTION);
 
-    // Add new subscription (sin verificar duplicados para evitar problemas de permisos)
+    
     const subscriptionData: Omit<NewsletterSubscription, "id"> = {
       email,
       subscribedAt: new Date().toISOString(),
@@ -54,7 +52,7 @@ export const addNewsletterSubscription = async (
   }
 };
 
-// Get all newsletter subscriptions
+
 export const getAllNewsletterSubscriptions = async (): Promise<
   NewsletterSubscription[]
 > => {
@@ -73,7 +71,7 @@ export const getAllNewsletterSubscriptions = async (): Promise<
   }
 };
 
-// Unsubscribe from newsletter
+
 export const unsubscribeFromNewsletter = async (
   email: string,
 ): Promise<boolean> => {
@@ -86,7 +84,7 @@ export const unsubscribeFromNewsletter = async (
       return false;
     }
 
-    // Update the active status to false
+    
     const subscriptionDoc = snapshot.docs[0];
 
     await updateDoc(doc(db, COLLECTION, subscriptionDoc.id), {

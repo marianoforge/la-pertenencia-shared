@@ -53,14 +53,14 @@ const FAQ = () => {
         {faqs.map((faq, index) => (
           <React.Fragment key={index}>
             <div className="w-full flex flex-col justify-start items-start gap-2.5">
-              {/* Question */}
+              {}
               <div className="w-full">
                 <div className="w-full justify-start text-yellow-700 text-sm md:text-base font-semibold font-['Lora'] uppercase tracking-[3px] md:tracking-[4px]">
                   {faq.question}
                 </div>
               </div>
 
-              {/* Answer */}
+              {}
               <div className="w-full pt-1.5">
                 <div className="w-full justify-start text-neutral-900 text-sm md:text-base font-normal font-['Lora'] leading-normal tracking-wide whitespace-pre-line">
                   {faq.answer.includes("info@lapertenencia.com") ? (
@@ -81,7 +81,7 @@ const FAQ = () => {
               </div>
             </div>
 
-            {/* Divider - only show if not the last item */}
+            {}
             {index < faqs.length - 1 && (
               <div className="w-full h-0 border-b border-neutral-400 border-opacity-50" />
             )}

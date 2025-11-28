@@ -12,7 +12,7 @@ const MembresiaMensual = () => {
       />
 
       <div className="w-full max-w-[1300px] pt-5 md:pt-12 pb-5 flex flex-col justify-center items-center md:gap-10 lg:gap-10 sm:px-0">
-        {/* Desktop Layout (LG+) */}
+        {}
         <div className="hidden lg:flex w-full justify-center items-center gap-10">
           <div className="w-[550px] h-[460px] relative overflow-hidden flex-shrink-0">
             <img
@@ -51,7 +51,7 @@ const MembresiaMensual = () => {
           </div>
         </div>
 
-        {/* Mobile/Tablet Layout (up to LG) */}
+        {}
         <div className="lg:hidden w-full flex flex-col justify-center items-center gap-7 md:gap-10">
           <div className="w-full lg:w-[580px] h-48 sm:h-48 md:h-96 lg:h-[470px] relative rounded-lg overflow-hidden flex-shrink-0 aos-init aos-animate">
             <img
@@ -95,7 +95,7 @@ const MembresiaMensual = () => {
           </Link>
         </div>
 
-        {/* Button for mobile - outside containers to be full width */}
+        {}
         <div className="w-full max-w-[1300px] max-[480px]:px-0 px-4 sm:px-0 max-[480px]:block hidden">
           <Link href="/membresias">
             <Button variant="primary">Quiero ser parte</Button>

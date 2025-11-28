@@ -1,6 +1,4 @@
-/**
- * 🛒 Orders Management Functions
- */
+
 
 import {
   collection,
@@ -22,7 +20,7 @@ import { getPaginated, PaginatedResult, PaginationOptions } from "./pagination";
 
 const COLLECTION = "orders";
 
-// Generate order number
+
 const generateOrderNumber = (): string => {
   const timestamp = Date.now();
   const random = Math.floor(Math.random() * 1000)
@@ -32,7 +30,7 @@ const generateOrderNumber = (): string => {
   return `ORD-${timestamp}-${random}`;
 };
 
-// Create new order
+
 export const createOrder = async (
   orderData: Omit<Order, "id" | "orderNumber" | "createdAt">,
 ): Promise<{
@@ -69,7 +67,7 @@ export const createOrder = async (
   }
 };
 
-// Get all orders (mantiene compatibilidad, pero considera usar getOrdersPaginated)
+
 export const getAllOrders = async (): Promise<Order[]> => {
   try {
     const ordersCollection = collection(db, COLLECTION);
@@ -86,7 +84,7 @@ export const getAllOrders = async (): Promise<Order[]> => {
   }
 };
 
-// Get orders with pagination (recomendado para grandes volúmenes)
+
 export const getOrdersPaginated = async (
   options: PaginationOptions = {}
 ): Promise<PaginatedResult<Order>> => {
@@ -98,7 +96,7 @@ export const getOrdersPaginated = async (
   });
 };
 
-// Get order by ID
+
 export const getOrderById = async (id: string): Promise<Order> => {
   try {
     if (!id || id === "undefined") {
@@ -125,7 +123,7 @@ export const getOrderById = async (id: string): Promise<Order> => {
   }
 };
 
-// Update order status
+
 export const updateOrderStatus = async (
   orderId: string,
   status: Order["status"],
@@ -151,7 +149,7 @@ export const updateOrderStatus = async (
   }
 };
 
-// Delete order
+
 export const deleteOrder = async (orderId: string): Promise<boolean> => {
   try {
     const orderDoc = doc(db, COLLECTION, orderId);

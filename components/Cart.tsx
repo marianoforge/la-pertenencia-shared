@@ -97,7 +97,7 @@ const Cart = () => {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {}
           <motion.button
             animate={{ opacity: 1 }}
             aria-label="Cerrar carrito"
@@ -114,7 +114,7 @@ const Cart = () => {
             type="button"
           />
 
-          {/* Cart Panel */}
+          {}
           <motion.div
             animate={{ x: 0 }}
             className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50 flex flex-col font-['Lora']"
@@ -122,10 +122,10 @@ const Cart = () => {
             initial={{ x: "100%" }}
             transition={{
               duration: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94], // easeOutCubic
+              ease: [0.25, 0.46, 0.45, 0.94], 
             }}
           >
-            {/* Header */}
+            {}
             <div className="flex items-center justify-between p-6 border-b border-neutral-200">
               <h2 className="text-xl font-semibold font-['Lora'] text-neutral-900 uppercase tracking-[3px]">
                 Carrito ({totalItems})
@@ -154,7 +154,7 @@ const Cart = () => {
               </button>
             </div>
 
-            {/* Cart Items */}
+            {}
             <div className="flex-1 overflow-y-auto p-6">
               {items.length === 0 ? (
                 <EmptyCart />
@@ -169,7 +169,7 @@ const Cart = () => {
                     />
                   ))}
 
-                  {/* Shipping Information */}
+                  {}
                   <ShippingForm
                     postalCode={postalCode}
                     shippingInfo={shippingInfo}
@@ -181,10 +181,10 @@ const Cart = () => {
               )}
             </div>
 
-            {/* Footer */}
+            {}
             {items.length > 0 && (
               <div className="border-t border-neutral-200 p-6 space-y-6">
-                {/* Shipping Cost */}
+                {}
                 {shippingCost !== null && (
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold font-['Lora'] text-neutral-900 uppercase tracking-[2px]">
@@ -202,7 +202,7 @@ const Cart = () => {
                   </div>
                 )}
 
-                {/* Total */}
+                {}
                 <div className="flex items-center justify-between">
                   <span className="text-lg font-semibold font-['Lora'] text-neutral-900 uppercase tracking-[2px]">
                     Total:
@@ -212,7 +212,7 @@ const Cart = () => {
                   </span>
                 </div>
 
-                {/* Action Buttons */}
+                {}
                 <div className="space-y-3">
                   <Button
                     className="w-full !max-w-none !tracking-[3px] disabled:bg-amber-200 disabled:opacity-60 disabled:cursor-not-allowed"
@@ -251,7 +251,7 @@ const Cart = () => {
                   </Button>
                 </div>
 
-                {/* Error Message */}
+                {}
                 {mpError && (
                   <div className="p-3 bg-red-50 border border-red-200 rounded-sm">
                     <p className="text-red-700 text-xs font-['Lora'] tracking-wide">
@@ -260,7 +260,7 @@ const Cart = () => {
                   </div>
                 )}
 
-                {/* Info */}
+                {}
                 <p className="text-xs text-center text-neutral-600 font-['Lora'] tracking-wide leading-relaxed">
                   Los precios incluyen IVA.
                 </p>

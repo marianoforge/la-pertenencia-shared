@@ -119,7 +119,7 @@ async function createWine(wineData: CreateWineInput): Promise<Wine> {
       throw new Error("Failed to create wine");
     }
 
-    // Obtener el vino recién creado
+    
     const newWine = await getWineById(wineId);
 
     if (!newWine) {

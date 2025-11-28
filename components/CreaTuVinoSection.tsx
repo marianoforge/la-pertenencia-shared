@@ -12,7 +12,7 @@ export default function CreaTuVinoSection() {
 
   return (
     <>
-      {/* Hero Section with Background Image */}
+      {}
       <Section className="!p-0" variant="default">
         <div className="w-full max-w-[1300px] pt-10">
           <div data-aos="fade-up">
@@ -36,7 +36,7 @@ export default function CreaTuVinoSection() {
         </div>
       </Section>
 
-      {/* Content Section */}
+      {}
       <Section className="lg:!px-0 lg:!py-16" variant="default">
         <div className="w-full max-w-[1300px] flex flex-col justify-start items-start gap-5 italic">
           <div className="w-full text-neutral-900 text-lg md:text-xl font-semibold font-['Lora'] leading-relaxed md:leading-loose tracking-wide">
@@ -58,7 +58,7 @@ export default function CreaTuVinoSection() {
         </div>
 
         <div className="w-full max-w-[1300px] py-5 flex flex-col lg:flex-row justify-center items-start gap-10 italic">
-          {/* Left Content */}
+          {}
           <div
             className="flex-1 w-full flex flex-col justify-start items-start gap-2.5"
             data-aos="fade-right"
@@ -101,7 +101,7 @@ export default function CreaTuVinoSection() {
               <li>Proyectos personales con alma</li>
             </ul>
 
-            {/* Button for desktop - inside left content */}
+            {}
             <button
               className="min-[481px]:flex hidden max-[380px]:px-4 px-8 md:px-12 py-4 bg-amber-300 rounded-sm outline outline-[0.50px] outline-offset-[-0.50px] outline-neutral-900 justify-center items-center gap-2.5 mt-6 hover:bg-amber-400 transition-colors cursor-pointer"
               onClick={handleWhatsAppClick}
@@ -112,7 +112,7 @@ export default function CreaTuVinoSection() {
             </button>
           </div>
 
-          {/* Right Image */}
+          {}
           <div
             className="flex flex-col justify-center items-start gap-2.5 w-full lg:w-auto italic"
             data-aos="fade-left"
@@ -137,7 +137,7 @@ export default function CreaTuVinoSection() {
           </div>
         </div>
 
-        {/* Button for mobile - outside flex container to be full width */}
+        {}
         <button
           className="max-[480px]:flex hidden w-full max-[380px]:px-4 px-8 md:px-12 py-4 bg-amber-300 rounded-sm outline outline-[0.50px] outline-offset-[-0.50px] outline-neutral-900 justify-center items-center gap-2.5 mt-6 hover:bg-amber-400 transition-colors cursor-pointer"
           onClick={handleWhatsAppClick}

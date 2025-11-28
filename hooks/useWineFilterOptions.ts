@@ -16,7 +16,7 @@ export const useWineFilterOptions = () => {
       try {
         const wines = await getAllWines();
 
-        // Extraer valores únicos para cada filtro usando los campos correctos
+        
         const bodegas = Array.from(
           new Set(wines.map((wine) => wine.bodega).filter(Boolean)),
         ).sort();
@@ -47,7 +47,7 @@ export const useWineFilterOptions = () => {
         };
       }
     },
-    staleTime: 5 * 60 * 1000, // 5 minutos
-    gcTime: 10 * 60 * 1000, // 10 minutos
+    staleTime: 5 * 60 * 1000, 
+    gcTime: 10 * 60 * 1000, 
   });
 };

@@ -1,12 +1,8 @@
-/**
- * Sanitización de datos para prevenir XSS y otros ataques
- */
+
 
 import DOMPurify from "isomorphic-dompurify";
 
-/**
- * Sanitiza HTML permitiendo solo tags seguros
- */
+
 export function sanitizeHtml(html: string): string {
   return DOMPurify.sanitize(html, {
     ALLOWED_TAGS: ["p", "br", "strong", "em", "u", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6"],
@@ -15,24 +11,20 @@ export function sanitizeHtml(html: string): string {
   });
 }
 
-/**
- * Sanitiza texto plano removiendo caracteres peligrosos
- */
+
 export function sanitizeText(text: string): string {
   if (typeof text !== "string") {
     return "";
   }
   
-  // Remover caracteres de control y scripts
+  
   return text
-    .replace(/[\x00-\x1F\x7F]/g, "") // Remover caracteres de control
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "") // Remover scripts
+    .replace(/[\x00-\x1F\x7F]/g, "") 
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "") 
     .trim();
 }
 
-/**
- * Sanitiza un objeto recursivamente
- */
+
 export function sanitizeObject<T extends Record<string, unknown>>(obj: T): T {
   const sanitized = { ...obj };
   
@@ -41,7 +33,7 @@ export function sanitizeObject<T extends Record<string, unknown>>(obj: T): T {
       const value = sanitized[key];
       
       if (typeof value === "string") {
-        // Si parece HTML, sanitizar como HTML, sino como texto
+        
         if (value.includes("<") && value.includes(">")) {
           sanitized[key] = sanitizeHtml(value) as T[Extract<keyof T, string>];
         } else {
@@ -68,9 +60,7 @@ export function sanitizeObject<T extends Record<string, unknown>>(obj: T): T {
   return sanitized;
 }
 
-/**
- * Valida y sanitiza email
- */
+
 export function sanitizeEmail(email: string): string {
   return sanitizeText(email)
     .toLowerCase()
@@ -78,14 +68,12 @@ export function sanitizeEmail(email: string): string {
     .replace(/[^\w@.-]/g, "");
 }
 
-/**
- * Valida y sanitiza URL
- */
+
 export function sanitizeUrl(url: string): string {
   try {
     const sanitized = sanitizeText(url);
     const urlObj = new URL(sanitized);
-    // Solo permitir http y https
+    
     if (urlObj.protocol !== "http:" && urlObj.protocol !== "https:") {
       return "";
     }

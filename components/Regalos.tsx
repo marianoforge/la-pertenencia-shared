@@ -46,7 +46,7 @@ const Regalos = () => {
       />
 
       <div className="w-full max-w-[1300px] pt-6 md:pt-10 flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-10 px-4 sm:px-0">
-        {/* Kit grande */}
+        {}
         <div className="w-full sm:justify-start h-[400px] relative flex justify-center items-start overflow-hidden">
           <GiftKitCard
             {...GIFT_KITS[0]}
@@ -54,7 +54,7 @@ const Regalos = () => {
           />
         </div>
 
-        {/* Kits pequeños */}
+        {}
         <div className="w-full flex flex-col sm:flex-row gap-6 md:gap-8 lg:gap-10">
           <GiftKitCard
             {...GIFT_KITS[1]}

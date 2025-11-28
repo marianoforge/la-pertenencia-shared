@@ -1,9 +1,9 @@
-// Configuración de Mercado Pago para el cliente
+
 export const MERCADOPAGO_PUBLIC_KEY =
   process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY_TEST ||
   process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY;
 
-// URLs de retorno
+
 export const getReturnUrls = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
@@ -14,7 +14,7 @@ export const getReturnUrls = () => {
   };
 };
 
-// Validar configuración
+
 export const validateMercadoPagoConfig = () => {
   if (!MERCADOPAGO_PUBLIC_KEY) {
     throw new Error("NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY no está configurada");
@@ -23,7 +23,7 @@ export const validateMercadoPagoConfig = () => {
   return true;
 };
 
-// Helper para formatear el precio
+
 export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat("es-AR", {
     style: "currency",

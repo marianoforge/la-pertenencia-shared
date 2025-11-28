@@ -37,7 +37,7 @@ export default function WineAdminPanel() {
   const [wineForm, setWineForm] = useState<Partial<Wine>>(DEFAULT_WINE_VALUES);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TanStack Query hooks
+  
   const {
     data: wines = [],
     isLoading: winesLoading,
@@ -47,7 +47,7 @@ export default function WineAdminPanel() {
   const updateWineMutation = useUpdateWine();
   const deleteWineMutation = useDeleteWine();
 
-  // Paginación
+  
   const {
     currentPage,
     totalPages,
@@ -60,7 +60,7 @@ export default function WineAdminPanel() {
     searchFields: ["marca", "bodega", "tipo", "varietal", "region"],
   });
 
-  // Validar formulario
+  
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -92,7 +92,7 @@ export default function WineAdminPanel() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Resetear formulario
+  
   const resetForm = () => {
     setWineForm(DEFAULT_WINE_VALUES);
     setSelectedFile(null);
@@ -101,7 +101,7 @@ export default function WineAdminPanel() {
     setErrors({});
   };
 
-  // Manejar cambios en el formulario
+  
   const handleInputChange = (field: string, value: any) => {
     setWineForm((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -109,7 +109,7 @@ export default function WineAdminPanel() {
     }
   };
 
-  // Manejar submit del formulario
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -120,7 +120,7 @@ export default function WineAdminPanel() {
     try {
       let imageUrl = wineForm.image || "/images/default-wine.jpg";
 
-      // Subir imagen si se seleccionó una
+      
       if (selectedFile) {
         if (!validateImageFile(selectedFile)) {
           alert("Archivo de imagen no válido");
@@ -140,7 +140,7 @@ export default function WineAdminPanel() {
         imageUrl = editingWine.image;
       }
 
-      // Preparar datos del vino
+      
       const wineData = cleanOptionalFields({ ...wineForm, image: imageUrl }, [
         "maridaje",
         "description",
@@ -166,7 +166,7 @@ export default function WineAdminPanel() {
     setUploading(false);
   };
 
-  // Editar vino
+  
   const handleEdit = (wine: Wine) => {
     setWineForm({
       marca: wine.marca,
@@ -190,7 +190,7 @@ export default function WineAdminPanel() {
     setShowForm(true);
   };
 
-  // Eliminar vino
+  
   const handleDelete = async (wine: Wine) => {
     if (confirmDelete(`el vino "${wine.marca}"`)) {
       try {
@@ -203,15 +203,15 @@ export default function WineAdminPanel() {
     }
   };
 
-  // El AdminPanel padre ya maneja autenticación
+  
   if (!user) return null;
 
-  // Mostrar loading
+  
   if (winesLoading) {
     return <AdminLoadingState message="Cargando vinos..." />;
   }
 
-  // Mostrar error
+  
   if (winesError) {
     return (
       <AdminEmptyState
@@ -223,7 +223,7 @@ export default function WineAdminPanel() {
 
   return (
     <div className="space-y-6">
-      {/* UID para configurar como admin */}
+      {}
       <Card className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
         <div className="flex">
           <div className="ml-3">
@@ -241,7 +241,7 @@ export default function WineAdminPanel() {
         </div>
       </Card>
 
-      {/* Barra de búsqueda y botón agregar */}
+      {}
       <div className="flex gap-4 items-center">
         <div className="flex-1">
           <AdminSearchBar
@@ -260,7 +260,7 @@ export default function WineAdminPanel() {
         </Button>
       </div>
 
-      {/* Lista de vinos */}
+      {}
       {paginatedWines.length === 0 ? (
         <AdminEmptyState
           actionLabel="Agregar primer vino"
@@ -293,7 +293,7 @@ export default function WineAdminPanel() {
         </>
       )}
 
-      {/* Modal de formulario */}
+      {}
       <Modal
         isDismissable={false}
         isOpen={showForm}

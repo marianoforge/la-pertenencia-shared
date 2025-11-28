@@ -42,7 +42,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 
         <ModalBody>
           <div className="space-y-6">
-            {/* Información General */}
+            {}
             <section>
               <h3 className="text-lg font-semibold mb-3">
                 Información General
@@ -75,7 +75,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
               </dl>
             </section>
 
-            {/* Información de Envío */}
+            {}
             <section>
               <h3 className="text-lg font-semibold mb-3">
                 Información de Envío
@@ -100,7 +100,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
               </address>
             </section>
 
-            {/* Items del Pedido */}
+            {}
             <section>
               <h3 className="text-lg font-semibold mb-3">Items</h3>
               <ul className="space-y-3">
@@ -138,7 +138,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
               </ul>
             </section>
 
-            {/* Resumen de Costos */}
+            {}
             <section>
               <h3 className="text-lg font-semibold mb-3">Resumen</h3>
               <dl className="space-y-2">
@@ -165,7 +165,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
               </dl>
             </section>
 
-            {/* Cambiar Estado */}
+            {}
             <section>
               <h3 className="text-lg font-semibold mb-3">Cambiar Estado</h3>
               <div className="flex gap-2 flex-wrap">

@@ -10,7 +10,7 @@ interface WineStore {
   filters: WineFilters;
   selectedWine: Wine | null;
 
-  // Actions
+  
   setWines: (wines: Wine[]) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;

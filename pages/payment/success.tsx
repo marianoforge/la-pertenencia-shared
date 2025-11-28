@@ -11,7 +11,7 @@ export default function PaymentSuccess() {
   const { payment_id, status, external_reference } = router.query;
 
   useEffect(() => {
-    // Limpiar el carrito cuando el pago sea exitoso
+    
     if (status === "approved") {
       clearCart();
     }

@@ -62,7 +62,7 @@ const WineGridCard = ({ wine, onAddToCart }: WineGridCardProps) => {
         }
       }}
     >
-      {/* Wine Image */}
+      {}
       <div className="w-full h-48 md:h-56 lg:h-64 bg-gradient-to-l from-white to-zinc-100/50 flex items-center justify-center relative">
         <Image
           alt={imageAlt}
@@ -74,26 +74,26 @@ const WineGridCard = ({ wine, onAddToCart }: WineGridCardProps) => {
         />
       </div>
 
-      {/* Wine Details */}
+      {}
       <div className="p-3 md:p-4">
-        {/* Wine Name */}
+        {}
         <div className="text-center mb-2">
           <h3 className="text-xs md:text-sm font-semibold font-['Lora'] uppercase tracking-[2px] md:tracking-[3.50px] text-neutral-900 min-h-[36px] md:min-h-[48px] flex items-center justify-center leading-tight">
             {wine.marca}
           </h3>
         </div>
 
-        {/* Wine Category */}
+        {}
         <div className="text-center mb-3 md:mb-4">
           <p className="text-xs md:text-sm font-medium font-['Lora'] tracking-[2px] md:tracking-[3.50px] text-yellow-700">
             {wine.tipo}
           </p>
         </div>
 
-        {/* Divider */}
+        {}
         <Divider variant="neutral" className="mb-3 md:mb-4" />
 
-        {/* Price */}
+        {}
         <div className="text-center mb-3 md:mb-4">
           <PriceDisplay 
             price={wine.price} 
@@ -101,19 +101,19 @@ const WineGridCard = ({ wine, onAddToCart }: WineGridCardProps) => {
           />
         </div>
 
-        {/* Divider */}
+        {}
         <Divider variant="neutral" className="mb-4 md:mb-4" />
 
-        {/* Description */}
+        {}
         <div className="min-h-16 max-h-16 text-center mb-4 md:mb-6">
           <p className="text-xs md:text-sm font-normal font-['Lora'] tracking-wide text-neutral-900 line-clamp-3 leading-relaxed">
             {wine.description}
           </p>
         </div>
 
-        {/* Quantity Selector */}
+        {}
         <div className="mb-3 md:mb-4">
-          {/* Label "Cajas por X:" */}
+          {}
           <div className="text-center mb-2">
             <span className="text-neutral-900 text-xs md:text-sm font-medium font-['Lora'] tracking-wide">
               Cajas por {wine.boxSize || 6} unidades
@@ -151,7 +151,7 @@ const WineGridCard = ({ wine, onAddToCart }: WineGridCardProps) => {
           </div>
         </div>
 
-        {/* Add to Cart Button */}
+        {}
         <AddToCartButton
           className="w-full px-3 md:px-4 py-2 text-xs md:text-base tracking-[4px] md:tracking-[8px]"
           isOutOfStock={wine.stock === 0}

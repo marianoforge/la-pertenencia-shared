@@ -1,100 +1,100 @@
 export const themeColors = {
-  // Colores puros
+  
   negroPuro: "#000000",
   blancoPuro: "#FFFFFF",
 
-  // Colores base
+  
   negroBase: "#111111",
   blancoBg: "#FAFAFA",
 
-  // Escala de grises
+  
   gris90: "#292929",
   grisBg: "#F5F5F5",
   gris60: "#707070",
   gris30: "#A6A6A6",
 
-  // Colores dorados (primarios)
+  
   doradoLight: "#FEBB41",
   doradoDark: "#9B6502",
 } as const;
 
 export const typography = {
-  // Typography specifications from design system
+  
   h1: {
     fontSize: "32px",
-    fontWeight: "400", // Regular
+    fontWeight: "400", 
     lineHeight: "auto",
-    letterSpacing: "0.5em", // 50%
+    letterSpacing: "0.5em", 
     textTransform: "uppercase",
     fontFamily: "Lora",
   },
   h2: {
     fontSize: "20px",
-    fontWeight: "500", // Medium
+    fontWeight: "500", 
     lineHeight: "auto",
-    letterSpacing: "0.5em", // 50%
+    letterSpacing: "0.5em", 
     textTransform: "uppercase",
     fontFamily: "Lora",
   },
   h3: {
     fontSize: "40px",
-    fontWeight: "500", // Medium
+    fontWeight: "500", 
     lineHeight: "auto",
-    letterSpacing: "0.25em", // 25%
+    letterSpacing: "0.25em", 
     fontFamily: "Lora",
   },
   heroParagraph: {
     fontSize: "20px",
-    fontWeight: "600", // Semibold
+    fontWeight: "600", 
     lineHeight: "32px",
-    letterSpacing: "0.02em", // 2%
+    letterSpacing: "0.02em", 
     fontStyle: "italic",
     fontFamily: "Lora",
   },
   cardTitle: {
     fontSize: "16px",
-    fontWeight: "600", // Semi Bold
+    fontWeight: "600", 
     lineHeight: "auto",
-    letterSpacing: "0.25em", // 25%
+    letterSpacing: "0.25em", 
     textTransform: "uppercase",
     fontFamily: "Lora",
   },
   cardSubtitle: {
     fontSize: "16px",
-    fontWeight: "500", // Medium
+    fontWeight: "500", 
     lineHeight: "auto",
-    letterSpacing: "0.25em", // 25%
+    letterSpacing: "0.25em", 
     fontStyle: "italic",
     fontFamily: "Lora",
   },
   cardParagraph: {
     fontSize: "16px",
-    fontWeight: "400", // Regular
+    fontWeight: "400", 
     lineHeight: "auto",
-    letterSpacing: "0.05em", // 5%
+    letterSpacing: "0.05em", 
     fontStyle: "italic",
     fontFamily: "Lora",
   },
   cardPrice: {
     fontSize: "32px",
-    fontWeight: "500", // Medium
+    fontWeight: "500", 
     lineHeight: "auto",
-    letterSpacing: "0.05em", // 5%
+    letterSpacing: "0.05em", 
     fontFamily: "Lora",
   },
   button: {
     fontSize: "16px",
-    fontWeight: "500", // Medium
+    fontWeight: "500", 
     lineHeight: "auto",
-    letterSpacing: "0.5em", // 50%
+    letterSpacing: "0.5em", 
     textTransform: "uppercase",
     fontFamily: "Lora",
   },
   input: {
     fontSize: "16px",
-    fontWeight: "400", // Regular
+    fontWeight: "400", 
     lineHeight: "auto",
-    letterSpacing: "0.05em", // 5%
+    letterSpacing: "0.05em", 
     fontFamily: "Lora",
   },
 } as const;

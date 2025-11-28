@@ -14,14 +14,14 @@ export default function WineList() {
   const [filters, setFilters] = useState<WineFilters>({});
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Usar los hooks de TanStack Query
+  
   const { data: wines = [], isLoading, error, refetch } = useWines(filters);
 
-  // Hook de búsqueda (solo se ejecuta si hay término de búsqueda)
+  
   const { data: searchResults = [], isLoading: searchLoading } =
     useSearchWines(searchTerm);
 
-  // Usar el hook de categoría si está seleccionada
+  
   const { data: categoryWines = [], isLoading: categoryLoading } =
     useWinesByCategory(filters.category || "");
 
@@ -34,7 +34,7 @@ export default function WineList() {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    // Limpiar otros filtros cuando buscamos
+    
     if (value) {
       setFilters({});
     }
@@ -45,7 +45,7 @@ export default function WineList() {
     setSearchTerm("");
   };
 
-  // Determinar qué datos mostrar
+  
   const displayWines = searchTerm
     ? searchResults
     : filters.category
@@ -72,12 +72,12 @@ export default function WineList() {
 
   return (
     <div className="space-y-6">
-      {/* Filtros */}
+      {}
       <Card className="p-6">
         <h2 className="text-xl font-bold mb-4">🍷 Filtros</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Búsqueda */}
+          {}
           <Input
             isClearable
             label="Buscar vinos"
@@ -88,7 +88,7 @@ export default function WineList() {
             onClear={() => setSearchTerm("")}
           />
 
-          {/* Categoría */}
+          {}
           <div>
             <label
               className="block text-sm font-medium mb-1"
@@ -113,7 +113,7 @@ export default function WineList() {
             </select>
           </div>
 
-          {/* Región */}
+          {}
           <Input
             label="Región"
             placeholder="Ej: Mendoza"
@@ -123,7 +123,7 @@ export default function WineList() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-          {/* Precio mínimo */}
+          {}
           <Input
             label="Precio mínimo"
             placeholder="0"
@@ -138,7 +138,7 @@ export default function WineList() {
             }
           />
 
-          {/* Precio máximo */}
+          {}
           <Input
             label="Precio máximo"
             placeholder="10000"
@@ -153,7 +153,7 @@ export default function WineList() {
             }
           />
 
-          {/* Solo destacados */}
+          {}
           <div className="flex items-center space-x-2 mt-6">
             <input
               checked={filters.featured || false}
@@ -191,7 +191,7 @@ export default function WineList() {
         </div>
       </Card>
 
-      {/* Lista de vinos */}
+      {}
       {isLoadingAny ? (
         <SkeletonTheme baseColor="#f3f3f3" highlightColor="#e0e0e0">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

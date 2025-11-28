@@ -24,7 +24,7 @@ export interface Wine {
   image: string;
   featured: boolean;
   winery: string;
-  boxSize?: number; // Tamaño de caja (por defecto 6 unidades)
+  boxSize?: number; 
   createdAt: string;
   updatedAt: string;
 }

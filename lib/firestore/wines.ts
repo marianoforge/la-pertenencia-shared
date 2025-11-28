@@ -1,6 +1,4 @@
-/**
- * 🍷 Wine Management Functions
- */
+
 
 import {
   collection,
@@ -30,15 +28,15 @@ import { getPaginated, PaginatedResult, PaginationOptions } from "./pagination";
 
 const COLLECTION = "wines";
 
-// Helper function to generate custom wine ID: marca-varietal-uid
+
 export const generateWineId = (marca: string, varietal: string): string => {
   const cleanMarca = marca
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // Remove accents
-    .replace(/[^a-z0-9]/g, "-") // Replace non-alphanumeric with hyphens
-    .replace(/-+/g, "-") // Replace multiple hyphens with single
-    .replace(/^-|-$/g, ""); // Remove leading/trailing hyphens
+    .replace(/[\u0300-\u036f]/g, "") 
+    .replace(/[^a-z0-9]/g, "-") 
+    .replace(/-+/g, "-") 
+    .replace(/^-|-$/g, ""); 
 
   const cleanVarietal = varietal
     .toLowerCase()
@@ -53,7 +51,7 @@ export const generateWineId = (marca: string, varietal: string): string => {
   return `${cleanMarca}-${cleanVarietal}-${uid}`;
 };
 
-// Get all wines (mantiene compatibilidad, pero considera usar getWinesPaginated)
+
 export const getAllWines = async (): Promise<Wine[]> => {
   try {
     const winesCollection = collection(db, COLLECTION);
@@ -69,7 +67,7 @@ export const getAllWines = async (): Promise<Wine[]> => {
   }
 };
 
-// Get wines with pagination (recomendado para grandes volúmenes)
+
 export const getWinesPaginated = async (
   options: PaginationOptions = {}
 ): Promise<PaginatedResult<Wine>> => {
@@ -81,7 +79,7 @@ export const getWinesPaginated = async (
   });
 };
 
-// Get wine by ID
+
 export const getWineById = async (id: string): Promise<Wine> => {
   try {
     if (!id || id === "undefined") {
@@ -108,7 +106,7 @@ export const getWineById = async (id: string): Promise<Wine> => {
   }
 };
 
-// Get wines by category (using tipo field)
+
 export const getWinesByCategory = async (category: string): Promise<Wine[]> => {
   try {
     const winesCollection = collection(db, COLLECTION);
@@ -129,7 +127,7 @@ export const getWinesByCategory = async (category: string): Promise<Wine[]> => {
   }
 };
 
-// Get featured wines
+
 export const getFeaturedWines = async (): Promise<Wine[]> => {
   try {
     const winesCollection = collection(db, COLLECTION);
@@ -151,7 +149,7 @@ export const getFeaturedWines = async (): Promise<Wine[]> => {
   }
 };
 
-// Add new wine with custom ID format: marca-varietal-uid
+
 export const addWine = async (
   wineData: Omit<Wine, "id" | "createdAt" | "updatedAt">,
 ): Promise<string> => {
@@ -173,7 +171,7 @@ export const addWine = async (
   }
 };
 
-// Update wine
+
 export const updateWine = async (
   id: string,
   wineData: Partial<Wine>,
@@ -193,12 +191,12 @@ export const updateWine = async (
   }
 };
 
-// Delete wine and associated image from Storage
+
 export const deleteWine = async (id: string): Promise<boolean> => {
   try {
     const wineDoc = doc(db, COLLECTION, id);
 
-    // Get wine data to retrieve image URL
+    
     const wineSnapshot = await getDoc(wineDoc);
 
     if (!wineSnapshot.exists()) {
@@ -207,10 +205,10 @@ export const deleteWine = async (id: string): Promise<boolean> => {
 
     const wineData = wineSnapshot.data() as Wine;
 
-    // Delete wine document
+    
     await deleteDoc(wineDoc);
 
-    // Delete associated image from Storage if it exists and is not a placeholder
+    
     if (
       wineData.image &&
       wineData.image.includes("firebasestorage.googleapis.com")
@@ -219,7 +217,7 @@ export const deleteWine = async (id: string): Promise<boolean> => {
         await deleteImageByUrl(wineData.image);
       } catch (error) {
         logger.warn("Failed to delete wine image from storage", error);
-        // Continue even if image deletion fails
+        
       }
     }
 
@@ -230,7 +228,7 @@ export const deleteWine = async (id: string): Promise<boolean> => {
   }
 };
 
-// Reduce wine stock (transactional to prevent race conditions)
+
 export const reduceWineStock = async (
   wineId: string,
   quantity: number,
@@ -256,7 +254,7 @@ export const reduceWineStock = async (
 
       const newStock = currentStock - quantity;
 
-      // Update the wine document with new stock
+      
       transaction.update(wineDoc, {
         stock: newStock,
         updatedAt: new Date().toISOString(),
@@ -275,7 +273,7 @@ export const reduceWineStock = async (
   }
 };
 
-// Search wines by name
+
 export const searchWinesByName = async (
   searchTerm: string,
 ): Promise<Wine[]> => {
@@ -288,7 +286,7 @@ export const searchWinesByName = async (
       ...doc.data(),
     })) as Wine[];
 
-    // Client-side filtering for name search (Firestore doesn't support full-text search)
+    
     return allWines.filter(
       (wine) =>
         wine.marca?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -301,7 +299,7 @@ export const searchWinesByName = async (
   }
 };
 
-// Migration function to import initial wine data
+
 export const migrateWineData = async (
   wines: Omit<Wine, "id">[],
 ): Promise<boolean> => {

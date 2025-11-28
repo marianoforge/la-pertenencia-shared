@@ -9,7 +9,7 @@ import {
 
 import { storage } from "@/lib/firebase";
 
-// Storage paths
+
 const STORAGE_PATHS = {
   WINES: "images/wines",
   CATEGORIES: "images/categories",
@@ -17,11 +17,9 @@ const STORAGE_PATHS = {
   GALLERY: "images/gallery",
 } as const;
 
-/**
- * 📸 Image Upload Functions
- */
 
-// Upload wine image
+
+
 export const uploadWineImage = async (
   file: File,
   wineId: string,
@@ -44,7 +42,7 @@ export const uploadWineImage = async (
   }
 };
 
-// Upload category image
+
 export const uploadCategoryImage = async (
   file: File,
   categoryName: string,
@@ -67,7 +65,7 @@ export const uploadCategoryImage = async (
   }
 };
 
-// Upload gallery image
+
 export const uploadGalleryImage = async (
   file: File,
   imageName?: string,
@@ -92,7 +90,7 @@ export const uploadGalleryImage = async (
   }
 };
 
-// Upload user avatar
+
 export const uploadUserAvatar = async (
   file: File,
   userId: string,
@@ -114,11 +112,9 @@ export const uploadUserAvatar = async (
   }
 };
 
-/**
- * 🗑️ Image Delete Functions
- */
 
-// Delete image by URL
+
+
 export const deleteImageByUrl = async (imageUrl: string): Promise<boolean> => {
   try {
     const imageRef = ref(storage, imageUrl);
@@ -135,7 +131,7 @@ export const deleteImageByUrl = async (imageUrl: string): Promise<boolean> => {
   }
 };
 
-// Delete wine image
+
 export const deleteWineImage = async (fileName: string): Promise<boolean> => {
   try {
     const imageRef = ref(storage, `${STORAGE_PATHS.WINES}/${fileName}`);
@@ -152,11 +148,9 @@ export const deleteWineImage = async (fileName: string): Promise<boolean> => {
   }
 };
 
-/**
- * 📂 Image List Functions
- */
 
-// Get all wine images
+
+
 export const getWineImages = async (): Promise<string[]> => {
   try {
     const winesRef = ref(storage, STORAGE_PATHS.WINES);
@@ -176,7 +170,7 @@ export const getWineImages = async (): Promise<string[]> => {
   }
 };
 
-// Get all gallery images
+
 export const getGalleryImages = async (): Promise<string[]> => {
   try {
     const galleryRef = ref(storage, STORAGE_PATHS.GALLERY);
@@ -196,11 +190,9 @@ export const getGalleryImages = async (): Promise<string[]> => {
   }
 };
 
-/**
- * 📝 Image Info Functions
- */
 
-// Get image metadata
+
+
 export const getImageMetadata = async (imagePath: string) => {
   try {
     const imageRef = ref(storage, imagePath);
@@ -220,14 +212,12 @@ export const getImageMetadata = async (imagePath: string) => {
   }
 };
 
-/**
- * 🔄 Utility Functions
- */
 
-// Validate image file
+
+
 export const validateImageFile = (file: File): boolean => {
   const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-  const maxSize = 5 * 1024 * 1024; // 5MB
+  const maxSize = 5 * 1024 * 1024; 
 
   if (!validTypes.includes(file.type)) {
     console.error(
@@ -246,7 +236,7 @@ export const validateImageFile = (file: File): boolean => {
   return true;
 };
 
-// Generate optimized file name
+
 export const generateFileName = (
   originalName: string,
   prefix?: string,

@@ -10,17 +10,17 @@ export interface Combo {
   description: string[];
   wines: ComboWine[];
   price: number;
-  image: string; // Imagen de los vinos del combo
-  backgroundImage: string; // Imagen de fondo
-  featured: boolean; // Para mostrar en el carousel
+  image: string; 
+  backgroundImage: string; 
+  featured: boolean; 
   createdAt?: string;
   updatedAt?: string;
 }
 
 export interface CreateComboInput {
   name: string;
-  wineIds: string[]; // IDs de los vinos seleccionados
+  wineIds: string[]; 
   price: number;
-  image: string; // Solo la imagen de los vinos, el fondo es fijo
+  image: string; 
   featured: boolean;
 }

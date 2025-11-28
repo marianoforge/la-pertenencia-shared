@@ -25,14 +25,14 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
 
     if (!file) return;
 
-    // Validate file size
+    
     const maxSize = maxSizeMB * 1024 * 1024;
     if (file.size > maxSize) {
       setError(`El archivo debe ser menor a ${maxSizeMB}MB`);
       return;
     }
 
-    // Validate file type
+    
     if (!file.type.startsWith("image/")) {
       setError("El archivo debe ser una imagen");
       return;
@@ -41,7 +41,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
     setError("");
     onFileSelect(file);
 
-    // Create preview
+    
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreview(reader.result as string);
