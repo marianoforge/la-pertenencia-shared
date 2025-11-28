@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { Wine, CreateWineInput } from "../../../types/wine";
+import { Wine } from "../../../types/wine";
 import {
   getAllWines,
   addWine,
@@ -9,10 +9,14 @@ import {
   searchWinesByName,
   getFeaturedWines,
 } from "../../../lib/firestore";
+import { createWineSchema } from "../../../lib/validators/wine";
+import { sendSuccess, sendError, ApiResponse } from "../../../lib/apiHelpers";
+import { ValidationError } from "../../../lib/errors";
+import { logger } from "../../../lib/logger";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse<ApiResponse<Wine[] | Wine>>,
 ) {
   if (req.method === "GET") {
     try {
@@ -51,37 +55,39 @@ export default async function handler(
         );
       }
 
-      res.status(200).json(filteredWines);
+      return sendSuccess(res, filteredWines);
     } catch (error) {
-      console.error("Error fetching wines:", error);
-      res.status(500).json({ error: "Failed to fetch wines" });
+      return sendError(res, error, "Failed to fetch wines");
     }
   } else if (req.method === "POST") {
     try {
-      const wineData: CreateWineInput = req.body;
+      // Validar con Zod
+      const validationResult = createWineSchema.safeParse(req.body);
 
-      // Validar datos requeridos
-      if (!wineData.marca || !wineData.winery || !wineData.price) {
-        return res.status(400).json({ error: "Missing required fields" });
+      if (!validationResult.success) {
+        throw new ValidationError(
+          "Invalid wine data",
+          validationResult.error.errors
+        );
       }
+
+      const wineData = validationResult.data;
 
       // Crear vino en Firebase
       const wineId = await addWine(wineData);
 
-      if (!wineId) {
-        return res.status(500).json({ error: "Failed to create wine" });
-      }
-
       // Obtener el vino recién creado para devolver con ID
       const newWine = await getWineById(wineId);
 
-      res.status(201).json(newWine);
+      return sendSuccess(res, newWine, 201);
     } catch (error) {
-      console.error("Error creating wine:", error);
-      res.status(500).json({ error: "Failed to create wine" });
+      return sendError(res, error, "Failed to create wine");
     }
   } else {
     res.setHeader("Allow", ["GET", "POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    return res.status(405).json({
+      success: false,
+      error: `Method ${req.method} Not Allowed`,
+    });
   }
 }

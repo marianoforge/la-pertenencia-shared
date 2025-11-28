@@ -16,6 +16,8 @@ Documentación técnica completa del proyecto La Pertenencia - E-commerce de vin
 4. **[MercadoPago](./04-MERCADOPAGO.md)** - Integración de pagos
 5. **[Firebase](./05-FIREBASE.md)** - Base de datos y configuración
 6. **[Features](./06-FEATURES.md)** - Newsletter, contacto, y otras funcionalidades
+7. **[Mejoras Recomendadas](./07-MEJORAS-RECOMENDADAS.md)** - Análisis completo y recomendaciones de mejoras
+8. **[Ejemplos de Código Mejorado](./08-EJEMPLOS-CODIGO-MEJORADO.md)** - Ejemplos concretos de implementación
 
 ### Referencia Rápida
 
@@ -27,6 +29,8 @@ Documentación técnica completa del proyecto La Pertenencia - E-commerce de vin
 | Pagos | `04-MERCADOPAGO.md` | Procesar pagos online |
 | Base de datos | `05-FIREBASE.md` | Firestore, reglas, índices |
 | Extras | `06-FEATURES.md` | Newsletter, formularios, etc. |
+| Mejoras | `07-MEJORAS-RECOMENDADAS.md` | Análisis y recomendaciones |
+| Ejemplos | `08-EJEMPLOS-CODIGO-MEJORADO.md` | Código de referencia |
 
 ## 🎯 Por Caso de Uso
 
@@ -47,6 +51,10 @@ Documentación técnica completa del proyecto La Pertenencia - E-commerce de vin
 
 ### Quiero agregar un suscriptor manualmente
 → Ve a `06-FEATURES.md` → Sección "Newsletter"
+
+### Quiero mejorar el código del proyecto
+→ Ve a `07-MEJORAS-RECOMENDADAS.md` → Revisa las recomendaciones priorizadas
+→ Ve a `08-EJEMPLOS-CODIGO-MEJORADO.md` → Implementa los ejemplos
 
 ## 🏗️ Arquitectura del Proyecto
 
@@ -160,14 +168,26 @@ Si encuentras un problema que no está documentado:
 
 ## 🔄 Mantener la Documentación Actualizada
 
-Esta documentación está organizada en 6 archivos principales para facilitar el mantenimiento:
+Esta documentación está organizada en 8 archivos principales para facilitar el mantenimiento:
 
 - Cada archivo cubre un tema específico
 - Los duplicados y archivos obsoletos fueron consolidados
 - Usa el índice de arriba para navegar rápidamente
 
+## 🔧 Mejoras y Refactorización
+
+El proyecto incluye un análisis completo de mejoras recomendadas:
+
+- **[Mejoras Recomendadas](./07-MEJORAS-RECOMENDADAS.md)**: Análisis detallado de estructura, código, seguridad, performance y más
+- **[Ejemplos de Código](./08-EJEMPLOS-CODIGO-MEJORADO.md)**: Implementaciones concretas de las mejoras sugeridas
+
+**Prioridades:**
+- 🔴 Alta: Seguridad, validación, estructura
+- 🟡 Media: Performance, testing, tipos
+- 🟢 Baja: Optimizaciones incrementales
+
 ---
 
-**Última actualización**: Noviembre 2025  
+**Última actualización**: Diciembre 2024  
 **Versión del proyecto**: 2.0.0
 

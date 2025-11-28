@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { MercadoPagoConfig, Preference } from "mercadopago";
 
 import { getReturnUrls } from "../../../lib/mercadopago";
+import { logger } from "../../../lib/logger";
 
 export default async function handler(
   req: NextApiRequest,
@@ -106,7 +107,7 @@ export default async function handler(
     };
 
     // Log para debugging - ver qué datos se están enviando
-    console.log("📦 Creando preferencia de pago:", {
+    logger.info("Creando preferencia de pago", {
       order_id: orderId,
       total_items: items.length,
       shipping_info: preferenceData.metadata.shipping_info || "No incluida",
@@ -132,7 +133,7 @@ export default async function handler(
       sandbox_init_point: result.sandbox_init_point,
     });
   } catch (error) {
-    console.error("Error creating preference:", error);
+    logger.error("Error creating preference", error);
     res.status(500).json({
       message: "Error al crear la preferencia de pago",
       error: error instanceof Error ? error.message : "Unknown error",

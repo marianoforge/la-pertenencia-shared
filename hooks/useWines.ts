@@ -16,6 +16,7 @@ import {
   searchWinesByName,
 } from "@/lib/firestore";
 import { QUERY_CONFIG } from "@/lib/constants";
+import { logger } from "@/lib/logger";
 
 function applyFilters(wines: any[], filters?: WineFilters): any[] {
   if (!filters) return wines;
@@ -91,7 +92,7 @@ async function fetchWines(filters?: WineFilters): Promise<Wine[]> {
 
     return applyFilters(wines, filters) as Wine[];
   } catch (error) {
-    console.error("Error fetching wines:", error);
+    logger.error("Error fetching wines", error);
     throw new Error("Failed to fetch wines from Firebase");
   }
 }
@@ -103,15 +104,9 @@ async function fetchWineById(id: string): Promise<Wine> {
     }
 
     const wine = await getWineById(id);
-
-    if (!wine) {
-      console.warn(`Wine with ID "${id}" not found in Firestore`);
-      throw new Error("Wine not found");
-    }
-
     return wine as Wine;
   } catch (error) {
-    console.error("Error fetching wine by ID:", error);
+    logger.error("Error fetching wine by ID", error);
     throw error;
   }
 }
@@ -133,7 +128,7 @@ async function createWine(wineData: CreateWineInput): Promise<Wine> {
 
     return newWine as Wine;
   } catch (error) {
-    console.error("Error creating wine:", error);
+    logger.error("Error creating wine", error);
     throw new Error("Failed to create wine in Firebase");
   }
 }
@@ -154,7 +149,7 @@ async function updateWine(wineData: UpdateWineInput): Promise<Wine> {
 
     return updatedWine as Wine;
   } catch (error) {
-    console.error("Error updating wine:", error);
+    logger.error("Error updating wine", error);
     throw new Error("Failed to update wine in Firebase");
   }
 }
@@ -167,7 +162,7 @@ async function deleteWine(id: string): Promise<void> {
       throw new Error("Failed to delete wine");
     }
   } catch (error) {
-    console.error("Error deleting wine:", error);
+    logger.error("Error deleting wine", error);
     throw new Error("Failed to delete wine from Firebase");
   }
 }
@@ -202,10 +197,10 @@ export function useCreateWine() {
       queryClient.invalidateQueries({ queryKey: ["wines"] });
       queryClient.setQueryData(["wine", newWine.id], newWine);
 
-      console.log("Wine created successfully:", newWine.marca);
+      logger.info("Wine created successfully", { marca: newWine.marca });
     },
     onError: (error) => {
-      console.error("Error creating wine:", error);
+      logger.error("Error creating wine", error);
     },
   });
 }
@@ -219,10 +214,10 @@ export function useUpdateWine() {
       queryClient.invalidateQueries({ queryKey: ["wines"] });
       queryClient.setQueryData(["wine", updatedWine.id], updatedWine);
 
-      console.log("Wine updated successfully:", updatedWine.marca);
+      logger.info("Wine updated successfully", { marca: updatedWine.marca });
     },
     onError: (error) => {
-      console.error("Error updating wine:", error);
+      logger.error("Error updating wine", error);
     },
   });
 }
@@ -236,10 +231,10 @@ export function useDeleteWine() {
       queryClient.invalidateQueries({ queryKey: ["wines"] });
       queryClient.removeQueries({ queryKey: ["wine", deletedId] });
 
-      console.log("Wine deleted successfully");
+      logger.info("Wine deleted successfully", { wineId: deletedId });
     },
     onError: (error) => {
-      console.error("Error deleting wine:", error);
+      logger.error("Error deleting wine", error);
     },
   });
 }
