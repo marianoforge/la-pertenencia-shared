@@ -6,7 +6,7 @@ import { QuantitySelector } from "../ui";
 interface GiftKitCardProps {
   id: string;
   name: string;
-  items: string[];
+  items: readonly string[];
   price: number;
   image: string;
   onAddToCart: (name: string, quantity: number) => void;
