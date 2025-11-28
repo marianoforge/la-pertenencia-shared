@@ -1,0 +1,173 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===========================================
+    // WINES COLLECTION - Lectura pública, escritura autenticada
+    // ===========================================
+    match /wines/{wineId} {
+      // Cualquiera puede leer los vinos (para el catálogo público)
+      allow read: if true;
+      
+      // Solo usuarios autenticados pueden crear/editar/eliminar vinos
+      allow create, update, delete: if request.auth != null;
+      
+      // Validación de datos para escritura
+      allow write: if request.auth != null 
+        && validateWineData(request.resource.data);
+    }
+    
+    // ===========================================
+    // COMBOS COLLECTION - Lectura pública, escritura autenticada
+    // ===========================================
+    match /combos/{comboId} {
+      // Cualquiera puede leer los combos (para el catálogo público)
+      allow read: if true;
+      
+      // Solo usuarios autenticados pueden crear/editar/eliminar combos
+      allow create, update, delete: if request.auth != null;
+      
+      // Validación de datos para escritura
+      allow write: if request.auth != null 
+        && validateComboData(request.resource.data);
+    }
+    
+    // ===========================================
+    // USERS COLLECTION - Privado al dueño
+    // ===========================================
+    match /users/{userId} {
+      // Solo el dueño puede leer/escribir su perfil
+      allow read, write: if request.auth != null 
+        && request.auth.uid == userId;
+    }
+    
+    // ===========================================
+    // ORDERS COLLECTION - Crear público, leer solo admins
+    // ===========================================
+    match /orders/{orderId} {
+      // Cualquiera puede crear un pedido (permite compras sin login)
+      allow create: if true;
+      
+      // Solo admins pueden leer, actualizar y eliminar pedidos
+      allow read, update, delete: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+    
+    // ===========================================
+    // CATEGORIES COLLECTION - Lectura pública, escritura admin
+    // ===========================================
+    match /categories/{categoryId} {
+      // Cualquiera puede leer categorías
+      allow read: if true;
+      
+      // Solo admins pueden modificar categorías
+      allow write: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+    
+    // ===========================================
+    // ADMIN COLLECTIONS - Solo administradores
+    // ===========================================
+    match /admin/{document=**} {
+      allow read, write: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+    
+    // ===========================================
+    // NEWSLETTER SUBSCRIPTIONS - Público crear, admin leer/editar
+    // ===========================================
+    match /suscriptos/{subscriptionId} {
+      // Cualquiera puede suscribirse (crear)
+      allow create: if true
+        && validateSubscriptionData(request.resource.data);
+      
+      // Solo admins pueden leer y editar suscripciones
+      allow read, update, delete: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+    
+    // ===========================================
+    // SETTINGS COLLECTION - Lectura pública, escritura admin
+    // ===========================================
+    match /settings/{settingId} {
+      // Cualquiera puede leer la configuración del sitio
+      // (necesario para que el carrito lea la config de envío)
+      allow read: if true;
+      
+      // Solo admins pueden modificar la configuración
+      allow write: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+    
+    // ===========================================
+    // CHAT/SUPPORT COLLECTIONS
+    // ===========================================
+    match /chat_responses/{responseId} {
+      // Lectura pública para respuestas del chatbot
+      allow read: if true;
+      
+      // Solo admins pueden crear/editar respuestas
+      allow write: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+    
+    match /unanswered_questions/{questionId} {
+      // Los usuarios pueden crear preguntas
+      allow create: if request.auth != null;
+      
+      // Solo admins pueden leer/editar preguntas
+      allow read, update, delete: if request.auth != null 
+        && isAdmin(request.auth.uid);
+    }
+
+    // ===========================================
+    // FUNCIONES DE VALIDACIÓN
+    // ===========================================
+    
+    // Validar datos de vino
+    function validateWineData(data) {
+      return data.keys().hasAll(['name', 'description', 'price', 'category', 'region', 'vintage'])
+        && data.name is string
+        && data.name.size() > 0
+        && data.description is string
+        && data.price is number
+        && data.price > 0
+        && data.category in ['Tintos', 'Blancos', 'Rosados', 'Espumantes']
+        && data.region is string
+        && data.vintage is number
+        && data.vintage >= 1900
+        && data.vintage <= 2030;
+    }
+    
+    // Validar datos de combo
+    function validateComboData(data) {
+      return data.keys().hasAll(['name', 'wines', 'price', 'image', 'backgroundImage', 'featured'])
+        && data.name is string
+        && data.name.size() > 0
+        && data.wines is list
+        && data.wines.size() > 0
+        && data.price is number
+        && data.price > 0
+        && data.image is string
+        && data.backgroundImage is string
+        && data.featured is bool;
+    }
+    
+    // Validar datos de suscripción
+    function validateSubscriptionData(data) {
+      return data.keys().hasAll(['email', 'subscribedAt', 'active'])
+        && data.email is string
+        && data.email.size() > 0
+        && data.email.matches('.*@.*\\..*') // Simple email validation
+        && data.subscribedAt is string
+        && data.active is bool;
+    }
+    
+    // Verificar si es administrador
+    // NOTA: Cualquier usuario autenticado es considerado admin
+    // Los usuarios se crean manualmente en Firebase Console
+    function isAdmin(userId) {
+      return userId != null;
+    }
+  }
+} 

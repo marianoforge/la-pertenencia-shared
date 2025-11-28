@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme colors */
+    --background: 0 0% 98%; /* blanco-bg #FAFAFA */
+    --foreground: 0 0% 7%; /* negro-base #111111 */
+    
+    --primary: 45 97% 68%; /* dorado-light #FEBB41 */
+    --primary-foreground: 0 0% 0%; /* negro-puro #000000 */
+    
+    --secondary: 0 0% 96%; /* gris-bg #F5F5F5 */
+    --secondary-foreground: 0 0% 16%; /* gris-90 #292929 */
+    
+    --accent: 45 86% 32%; /* dorado-dark #9B6502 */
+    --accent-foreground: 0 0% 100%; /* blanco-puro #FFFFFF */
+    
+    --muted: 0 0% 96%; /* gris-bg #F5F5F5 */
+    --muted-foreground: 0 0% 44%; /* gris-60 #707070 */
+    
+    --card: 0 0% 100%; /* blanco-puro #FFFFFF */
+    --card-foreground: 0 0% 7%; /* negro-base #111111 */
+    
+    --border: 0 0% 65%; /* gris-30 #A6A6A6 */
+    --input: 0 0% 96%; /* gris-bg #F5F5F5 */
+    --ring: 45 97% 68%; /* dorado-light #FEBB41 */
+    
+    /* Additional brand colors */
+    --dorado: 45 97% 68%; /* dorado-light #FEBB41 */
+    --dorado-dark: 45 86% 32%; /* dorado-dark #9B6502 */
+  }
+  
+  .dark {
+    /* Dark theme colors */
+    --background: 0 0% 7%; /* negro-base #111111 */
+    --foreground: 0 0% 98%; /* blanco-bg #FAFAFA */
+    
+    --primary: 45 97% 68%; /* dorado-light #FEBB41 */
+    --primary-foreground: 0 0% 0%; /* negro-puro #000000 */
+    
+    --secondary: 0 0% 16%; /* gris-90 #292929 */
+    --secondary-foreground: 0 0% 96%; /* gris-bg #F5F5F5 */
+    
+    --accent: 45 86% 32%; /* dorado-dark #9B6502 */
+    --accent-foreground: 0 0% 100%; /* blanco-puro #FFFFFF */
+    
+    --muted: 0 0% 16%; /* gris-90 #292929 */
+    --muted-foreground: 0 0% 65%; /* gris-30 #A6A6A6 */
+    
+    --card: 0 0% 0%; /* negro-puro #000000 */
+    --card-foreground: 0 0% 98%; /* blanco-bg #FAFAFA */
+    
+    --border: 0 0% 44%; /* gris-60 #707070 */
+    --input: 0 0% 16%; /* gris-90 #292929 */
+    --ring: 45 97% 68%; /* dorado-light #FEBB41 */
+    
+    /* Additional brand colors remain the same */
+    --dorado: 45 97% 68%; /* dorado-light #FEBB41 */
+    --dorado-dark: 45 86% 32%; /* dorado-dark #9B6502 */
+  }
+}
+
+/* Apply theme variables to body */
+body {
+  @apply bg-background text-foreground font-lora;
+}
+
+@layer components {
+  /* Typography Classes based on design spec */
+  .text-h1 {
+    @apply text-[32px] font-lora font-normal uppercase tracking-[0.5em] leading-none;
+  }
+  
+  .text-h2 {
+    @apply text-[20px] font-lora font-medium uppercase tracking-[0.5em] leading-none;
+  }
+  
+  .text-h3 {
+    @apply text-[40px] font-lora font-medium tracking-[0.25em] leading-none;
+  }
+  
+  .text-hero-paragraph {
+    @apply text-[20px] font-lora font-semibold italic tracking-[0.02em] leading-8;
+  }
+  
+  .text-card-title {
+    @apply text-[16px] font-lora font-semibold uppercase tracking-[0.25em] leading-none;
+  }
+  
+  .text-card-subtitle {
+    @apply text-[16px] font-lora font-medium italic tracking-[0.25em] leading-none;
+  }
+  
+  .text-card-paragraph {
+    @apply text-[16px] font-lora italic tracking-[0.05em] leading-none;
+  }
+  
+  .text-card-price {
+    @apply text-[32px] font-lora font-medium tracking-[0.05em] leading-none;
+  }
+  
+  .text-button {
+    @apply text-[16px] font-lora font-medium uppercase tracking-[0.5em] leading-none;
+  }
+  
+  .text-input {
+    @apply text-[16px] font-lora font-normal tracking-[0.05em] leading-none;
+  }
+  
+  /* Menu specific typography */
+  .text-menu {
+    @apply font-lora font-medium text-[16px] leading-4 tracking-[0.05em] text-center uppercase;
+  }
+  
+  /* Hero specific typography */
+  .text-hero-title {
+    @apply font-lora font-normal text-[32px] leading-[100%] tracking-[0.5em] uppercase bg-dorado-light text-negro-puro px-4 py-2;
+  }
+  
+  .text-hero-description {
+    @apply font-lora font-normal italic text-[20px] leading-8 tracking-[0.05em] text-blanco-puro;
+  }
+
+  /* Fluid utilities for responsive design without breakpoint jumps */
+  .fluid-width {
+    width: min(100%, 1920px);
+  }
+  
+  .fluid-container {
+    width: min(calc(100% - 2rem), 1920px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 4vw, 4rem);
+    padding-right: clamp(1rem, 4vw, 4rem);
+  }
+  
+  /* Mobile 16px margins override */
+  @media (max-width: 480px) {
+    .fluid-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Extra small mobile 12px margins override */
+  @media (max-width: 380px) {
+    .fluid-container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+  
+  .fluid-hero-container {
+    width: min(calc(100% - 2rem), 1300px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(0.75rem, 3vw, 3rem);
+    padding-right: clamp(0.75rem, 3vw, 3rem);
+  }
+  
+  .fluid-navbar-padding {
+    padding-left: clamp(1rem, 4vw, 4rem);
+    padding-right: clamp(1rem, 4vw, 4rem);
+  }
+  
+  /* Mobile navbar padding override */
+  @media (max-width: 480px) {
+    .fluid-navbar-padding {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Extra small mobile navbar padding override */
+  @media (max-width: 380px) {
+    .fluid-navbar-padding {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+  
+  .fluid-text-lg {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+  }
+  
+  .fluid-text-xl {
+    font-size: clamp(1.125rem, 3vw, 1.875rem);
+  }
+  
+  .fluid-text-2xl {
+    font-size: clamp(1.25rem, 3.5vw, 2.25rem);
+  }
+  
+  .fluid-text-3xl {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  .fluid-gap {
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  
+  .fluid-gap-lg {
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  
+  /* Media queries for fluid navbar behavior */
+  .fluid-menu-hide {
+    display: none;
+  }
+  
+  .fluid-menu-show {
+    display: flex;
+  }
+  
+  @media (min-width: 1000px) {
+    .fluid-menu-hide {
+      display: flex;
+    }
+    .fluid-menu-show {
+      display: none;
+    }
+  }
+
+  /* Utility class to hide elements at 1000px+ to match fluid-menu breakpoint */
+  .hide-at-fluid-breakpoint {
+    display: flex;
+  }
+
+  @media (min-width: 1000px) {
+    .hide-at-fluid-breakpoint {
+      display: none;
+    }
+  }
+  
+  /* Media queries for fluid hero behavior */
+  .fluid-hero-mobile {
+    display: flex;
+  }
+  
+  .fluid-hero-desktop {
+    display: none;
+  }
+  
+  .fluid-hero-container {
+    overflow: hidden;
+  }
+  
+  @media (min-width: 900px) {
+    .fluid-hero-mobile {
+      display: none;
+    }
+    .fluid-hero-desktop {
+      display: flex;
+    }
+    .fluid-hero-container {
+      overflow: visible;
+    }
+  }
+  
+  /* Wine banner mobile - show full image between 360px and 720px */
+  .wine-banner-container {
+    height: 24rem; /* h-96 */
+    overflow: hidden;
+  }
+  
+  .wine-banner-mobile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 75% center;
+  }
+  
+  @media (min-width: 360px) and (max-width: 720px) {
+    .wine-banner-container {
+      height: auto;
+    }
+    
+    .wine-banner-mobile {
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+}

@@ -1,0 +1,112 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // ===========================================
+    // IMAGES - Lectura pública, escritura autenticada
+    // ===========================================
+    match /images/{allPaths=**} {
+      // Cualquiera puede leer las imágenes (para mostrar en la web)
+      allow read: if true;
+      
+      // Solo usuarios autenticados pueden subir imágenes
+      allow write: if request.auth != null
+        && isValidImageUpload();
+    }
+    
+    // ===========================================
+    // WINE IMAGES - Específicas para vinos
+    // ===========================================
+    match /images/wines/{imageId} {
+      // Lectura pública para mostrar en catálogo
+      allow read: if true;
+      
+      // Escritura autenticada con validaciones específicas
+      allow write: if request.auth != null
+        && isValidWineImage();
+    }
+    
+    // ===========================================
+    // CATEGORY IMAGES - Para categorías de vinos
+    // ===========================================
+    match /images/categories/{imageId} {
+      // Lectura pública
+      allow read: if true;
+      
+      // Solo admins pueden subir imágenes de categorías
+      allow write: if request.auth != null
+        && isAdmin();
+    }
+    
+    // ===========================================
+    // USER AVATARS - Fotos de perfil
+    // ===========================================
+    match /images/users/{userId}/{imageId} {
+      // Solo el dueño puede leer su avatar
+      allow read: if request.auth != null 
+        && request.auth.uid == userId;
+      
+      // Solo el dueño puede subir/actualizar su avatar
+      allow write: if request.auth != null 
+        && request.auth.uid == userId
+        && isValidAvatarImage();
+    }
+    
+    // ===========================================
+    // GALLERY IMAGES - Galería de la bodega
+    // ===========================================
+    match /images/gallery/{imageId} {
+      // Lectura pública para mostrar galería
+      allow read: if true;
+      
+      // Solo admins pueden gestionar la galería
+      allow write: if request.auth != null
+        && isAdmin()
+        && isValidGalleryImage();
+    }
+    
+    // ===========================================
+    // ADMIN UPLOADS - Solo administradores
+    // ===========================================
+    match /admin/{allPaths=**} {
+      allow read, write: if request.auth != null
+        && isAdmin();
+    }
+
+    // ===========================================
+    // FUNCIONES DE VALIDACIÓN
+    // ===========================================
+    
+    // Validar imagen general
+    function isValidImageUpload() {
+      return request.resource.size < 5 * 1024 * 1024  // Máximo 5MB
+        && request.resource.contentType.matches('image/.*')  // Solo imágenes
+        && request.resource.contentType in ['image/jpeg', 'image/png', 'image/webp'];  // Formatos permitidos
+    }
+    
+    // Validar imagen de vino específicamente
+    function isValidWineImage() {
+      return isValidImageUpload()
+        && request.resource.size < 3 * 1024 * 1024;  // Máximo 3MB para vinos
+    }
+    
+    // Validar avatar de usuario
+    function isValidAvatarImage() {
+      return isValidImageUpload()
+        && request.resource.size < 1 * 1024 * 1024;  // Máximo 1MB para avatares
+    }
+    
+    // Validar imagen de galería
+    function isValidGalleryImage() {
+      return isValidImageUpload()
+        && request.resource.size < 10 * 1024 * 1024;  // Máximo 10MB para galería
+    }
+    
+    // Verificar si es administrador
+    // NOTA: Cualquier usuario autenticado es considerado admin
+    // Los usuarios se crean manualmente en Firebase Console
+    function isAdmin() {
+      return request.auth != null;
+    }
+  }
+} 
