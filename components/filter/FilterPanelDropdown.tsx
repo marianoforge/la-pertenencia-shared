@@ -24,14 +24,22 @@ export const FilterPanelDropdown: React.FC<FilterPanelDropdownProps> = ({
   <div className="mb-6">
     <div className="relative">
       <button
+        aria-label={`${label}: ${selectedValue || allLabel}`}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
         className="w-full px-4 py-3 bg-white border border-neutral-400 rounded-sm text-left flex justify-between items-center hover:border-neutral-600 transition-colors"
         type="button"
         onClick={onToggle}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            onToggle();
+          }
+        }}
       >
         <span className="text-neutral-900 font-['Lora'] text-sm">
           {selectedValue || label}
         </span>
-        <DropdownIcon />
+        <DropdownIcon aria-hidden="true" />
       </button>
 
       <AnimatePresence>
@@ -46,9 +54,13 @@ export const FilterPanelDropdown: React.FC<FilterPanelDropdownProps> = ({
               ease: [0.25, 0.46, 0.45, 0.94],
               transformOrigin: "top",
             }}
+            role="listbox"
+            aria-label={`Opciones de ${label}`}
           >
             <button
+              aria-label={`Seleccionar ${allLabel}`}
               className="w-full px-4 py-2 text-left text-neutral-900 font-['Lora'] text-sm hover:bg-neutral-100 transition-colors"
+              role="option"
               type="button"
               onClick={() => onChange("")}
             >
@@ -57,7 +69,10 @@ export const FilterPanelDropdown: React.FC<FilterPanelDropdownProps> = ({
             {options.map((option) => (
               <button
                 key={option}
+                aria-label={`Seleccionar ${option}`}
+                aria-selected={selectedValue === option}
                 className="w-full px-4 py-2 text-left text-neutral-900 font-['Lora'] text-sm hover:bg-neutral-100 transition-colors"
+                role="option"
                 type="button"
                 onClick={() => onChange(option)}
               >

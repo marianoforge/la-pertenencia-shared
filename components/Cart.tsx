@@ -106,6 +106,12 @@ const Cart = () => {
             initial={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={toggleCart}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                toggleCart();
+              }
+            }}
+            type="button"
           />
 
           {/* Cart Panel */}
@@ -125,8 +131,10 @@ const Cart = () => {
                 Carrito ({totalItems})
               </h2>
               <button
+                aria-label="Cerrar carrito"
                 className="w-8 h-8 flex items-center justify-center text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors"
                 onClick={toggleCart}
+                type="button"
               >
                 <svg
                   fill="none"

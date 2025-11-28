@@ -1,6 +1,13 @@
-export const DropdownIcon: React.FC = () => (
+interface DropdownIconProps {
+  "aria-hidden"?: boolean;
+}
+
+export const DropdownIcon: React.FC<DropdownIconProps> = ({ 
+  "aria-hidden": ariaHidden = false,
+}) => (
   <div className="w-5 h-5 relative flex items-center justify-center">
     <svg
+      aria-hidden={ariaHidden}
       fill="none"
       height="6"
       viewBox="0 0 12 6"

@@ -65,10 +65,23 @@ export const Navbar = () => {
                     onMouseLeave={() => setIsExperienciasOpen(false)}
                   >
                     <button
+                      aria-label={`Menú ${item.name}`}
+                      aria-expanded={isExperienciasOpen}
+                      aria-haspopup="true"
                       className="text-white font-normal font-['Lora'] hover:text-dorado-light transition-colors whitespace-nowrap flex items-center"
                       style={{
                         fontSize: "clamp(0.625rem, 0.8vw, 0.75rem)",
                         letterSpacing: "clamp(0.15rem, 0.3vw, 0.25rem)",
+                      }}
+                      type="button"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setIsExperienciasOpen(!isExperienciasOpen);
+                        }
+                        if (e.key === "Escape") {
+                          setIsExperienciasOpen(false);
+                        }
                       }}
                     >
                       {item.name}
@@ -95,6 +108,8 @@ export const Navbar = () => {
                           exit={{ opacity: 0, y: -10 }}
                           initial={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
+                          role="menu"
+                          aria-label="Submenú de experiencias"
                         >
                           {item.dropdownItems?.map((dropdownItem) => (
                             <NextLink

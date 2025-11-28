@@ -7,9 +7,10 @@ const CartButton = () => {
   return (
     <div className="relative">
       <button
-        aria-label={`Carrito de compras (${totalItems} items)`}
+        aria-label={`Carrito de compras (${totalItems} ${totalItems === 1 ? 'item' : 'items'})`}
         className="w-6 h-6 hover:opacity-75 transition-opacity"
         onClick={toggleCart}
+        type="button"
       >
         <CartIcon size={24} />
       </button>

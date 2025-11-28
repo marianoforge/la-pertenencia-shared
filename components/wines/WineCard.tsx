@@ -63,29 +63,42 @@ const WineCard = ({ wine, index = 0, onAddToCart }: WineCardProps) => {
         </div>
         <div className="self-stretch pb-2 inline-flex justify-center items-center gap-4">
           <Divider variant="neutral" className="flex-1" />
-          <div className="flex justify-center items-center gap-2.5">
+          <div 
+            className="flex justify-center items-center gap-2.5"
+            role="group"
+            aria-label={`Selector de cantidad para ${wine.marca}`}
+          >
             <button
+              aria-label={`Disminuir cantidad de ${wine.marca}`}
               className="w-7 h-7 px-3 py-1.5 bg-neutral-900 rounded-[3px] outline outline-[0.50px] outline-offset-[-0.50px] outline-amber-300 flex justify-center items-center gap-16 cursor-pointer hover:bg-neutral-800 transition-colors disabled:opacity-50"
               disabled={quantity <= 1}
               onClick={decrease}
+              type="button"
             >
-              <div className="justify-start text-dorado-light text-base font-bold font-['Lora']">
+              <span aria-hidden="true" className="justify-start text-dorado-light text-base font-bold font-['Lora']">
                 -
-              </div>
+              </span>
             </button>
-            <div className="w-9 h-9 px-3 py-1.5 bg-white rounded-[3px] outline outline-1 outline-offset-[-1px] outline-neutral-400 flex justify-center items-center gap-16">
+            <div 
+              className="w-9 h-9 px-3 py-1.5 bg-white rounded-[3px] outline outline-1 outline-offset-[-1px] outline-neutral-400 flex justify-center items-center gap-16"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
               <div className="justify-start text-neutral-900 text-base font-normal font-['Lora'] tracking-wide">
                 {quantity}
               </div>
             </div>
             <button
+              aria-label={`Aumentar cantidad de ${wine.marca}`}
               className="w-7 h-7 px-3 py-1.5 bg-neutral-900 rounded-[3px] outline outline-[0.50px] outline-offset-[-0.50px] outline-amber-300 flex justify-center items-center gap-16 cursor-pointer hover:bg-neutral-800 transition-colors disabled:opacity-50"
               disabled={quantity >= wine.stock}
               onClick={() => increase(wine.stock)}
+              type="button"
             >
-              <div className="justify-start text-dorado-light text-base font-bold font-['Lora']">
+              <span aria-hidden="true" className="justify-start text-dorado-light text-base font-bold font-['Lora']">
                 +
-              </div>
+              </span>
             </button>
           </div>
           <Divider variant="neutral" className="flex-1" />

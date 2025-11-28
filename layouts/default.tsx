@@ -11,6 +11,7 @@ import { Navbar } from "./Navbar";
 import Cart from "@/components/Cart";
 import CartNotification from "@/components/CartNotification";
 import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
+import { SkipToMainContent } from "@/components/SkipToMainContent";
 
 export default function DefaultLayout({
   children,
@@ -30,8 +31,9 @@ export default function DefaultLayout({
   return (
     <div className="fluid-width mx-auto relative flex flex-col min-h-screen">
       <Head />
+      <SkipToMainContent />
       <Navbar />
-      <main className="flex-grow font-lora">{children}</main>
+      <main id="main-content" className="flex-grow font-lora" role="main">{children}</main>
       <footer className="w-full flex items-center justify-center py-3">
         <div className="w-full self-stretch pt-12 bg-white inline-flex flex-col justify-center items-center gap-10 overflow-hidden">
           {/* Desktop LG+ Layout */}

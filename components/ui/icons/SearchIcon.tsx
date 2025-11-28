@@ -1,5 +1,14 @@
-export const SearchIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+interface SearchIconProps {
+  className?: string;
+  "aria-hidden"?: boolean;
+}
+
+export const SearchIcon: React.FC<SearchIconProps> = ({ 
+  className = "w-4 h-4",
+  "aria-hidden": ariaHidden = false,
+}) => (
   <svg
+    aria-hidden={ariaHidden}
     className={className}
     fill="none"
     viewBox="0 0 16 16"

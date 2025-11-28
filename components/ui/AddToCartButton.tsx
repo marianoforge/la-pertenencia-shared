@@ -24,6 +24,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
 
   return (
     <button
+      aria-label={isOutOfStock ? "Producto agotado" : "Agregar al carrito"}
       className={cn(
         "bg-neutral-900 rounded-sm border border-amber-300",
         "inline-flex justify-center items-center",
@@ -35,6 +36,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       )}
       disabled={disabled || isOutOfStock}
       onClick={onClick}
+      type="button"
     >
       <span className="text-dorado-light">
         {isOutOfStock ? "agotado" : "agregar"}

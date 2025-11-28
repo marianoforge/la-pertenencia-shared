@@ -61,10 +61,17 @@ const NewsLetterForm = () => {
             <form
               className="self-stretch flex flex-col justify-center items-center gap-5"
               onSubmit={handleSubmit}
+              aria-label="Formulario de suscripción al newsletter"
             >
               <div className="self-stretch px-4 py-2.5 bg-white/10 border-b border-neutral-400 inline-flex justify-start items-center gap-16">
+                <label htmlFor="newsletter-email" className="sr-only">
+                  Email para suscripción
+                </label>
                 <input
+                  id="newsletter-email"
                   required
+                  aria-label="Email para suscripción"
+                  aria-required="true"
                   className="flex-1 bg-transparent outline-none text-white text-sm font-normal font-['Lora'] tracking-wide placeholder:text-white/70"
                   placeholder="Email"
                   type="email"
@@ -73,6 +80,7 @@ const NewsLetterForm = () => {
                 />
               </div>
               <button
+                aria-label={isLoading ? "Suscribiendo..." : "Suscribirse al newsletter"}
                 className="self-stretch h-9 px-7 py-3 bg-amber-300 rounded-sm outline outline-[0.36px] outline-offset-[-0.36px] outline-neutral-900 inline-flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-400 transition-colors"
                 type="submit"
                 disabled={isLoading}
@@ -83,6 +91,8 @@ const NewsLetterForm = () => {
               </button>
               {message && (
                 <div
+                  role="alert"
+                  aria-live="polite"
                   className={`self-stretch text-center text-sm font-['Lora'] ${
                     message.type === "success"
                       ? "text-green-400"

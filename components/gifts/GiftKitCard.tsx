@@ -85,6 +85,7 @@ export const GiftKitCard: React.FC<GiftKitCardProps> = ({
         />
         
         <button
+          aria-label={`Agregar ${quantity} ${quantity === 1 ? 'kit' : 'kits'} de ${name} al carrito`}
           className="self-stretch pl-9 pr-7 py-1.5 lg:pl-12 lg:pr-10 lg:py-2 bg-neutral-900 rounded-sm outline outline-[0.38px] lg:outline-[0.50px] outline-offset-[-0.38px] lg:outline-offset-[-0.50px] outline-amber-300 inline-flex justify-center items-center gap-3 lg:gap-4"
           type="button"
           onClick={() => onAddToCart(name, quantity)}

@@ -79,12 +79,18 @@ const FilterPanel = () => {
           {/* Backdrop */}
           <motion.button
             animate={{ opacity: 1 }}
-            aria-label="Cerrar filtros"
+            aria-label="Cerrar panel de filtros"
             className="fixed inset-0 bg-black bg-opacity-50 z-40"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={closeFilters}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                closeFilters();
+              }
+            }}
+            type="button"
           />
 
           {/* Filter Panel */}
@@ -104,10 +110,12 @@ const FilterPanel = () => {
                 Filtrar por:
               </h2>
               <button
+                aria-label="Cerrar panel de filtros"
                 className="text-neutral-500 hover:text-neutral-700 text-2xl"
                 onClick={closeFilters}
+                type="button"
               >
-                ✕
+                <span aria-hidden="true">✕</span>
               </button>
             </div>
 
@@ -168,16 +176,20 @@ const FilterPanel = () => {
             {/* Footer Actions */}
             <div className="p-5 border-t border-neutral-400 flex gap-3">
               <button
+                aria-label="Aplicar filtros"
                 className="flex-1 h-10 px-4 py-2 bg-neutral-900 rounded-sm flex justify-center items-center hover:bg-neutral-800 transition-colors"
                 onClick={closeFilters}
+                type="button"
               >
                 <span className="text-dorado-light text-sm font-medium font-['Lora'] uppercase tracking-[3px]">
                   Aplicar
                 </span>
               </button>
               <button
+                aria-label="Descartar filtros"
                 className="flex-1 h-10 px-4 py-2 rounded-sm border border-neutral-400 flex justify-center items-center hover:bg-neutral-100 transition-colors"
                 onClick={handleClearFilters}
+                type="button"
               >
                 <span className="text-neutral-900 text-sm font-medium font-['Lora'] uppercase tracking-[3px]">
                   Descartar

@@ -18,6 +18,8 @@ Documentación técnica completa del proyecto La Pertenencia - E-commerce de vin
 6. **[Features](./06-FEATURES.md)** - Newsletter, contacto, y otras funcionalidades
 7. **[Mejoras Recomendadas](./07-MEJORAS-RECOMENDADAS.md)** - Análisis completo y recomendaciones de mejoras
 8. **[Ejemplos de Código Mejorado](./08-EJEMPLOS-CODIGO-MEJORADO.md)** - Ejemplos concretos de implementación
+9. **[Mejoras de Media Prioridad](./10-MEJORAS-MEDIA-PRIORIDAD.md)** - Performance, TypeScript, Testing, Seguridad
+10. **[Mejoras de Accesibilidad](./11-MEJORAS-ACCESIBILIDAD.md)** - A11y, WCAG, ARIA
 
 ### Referencia Rápida
 
@@ -31,6 +33,8 @@ Documentación técnica completa del proyecto La Pertenencia - E-commerce de vin
 | Extras | `06-FEATURES.md` | Newsletter, formularios, etc. |
 | Mejoras | `07-MEJORAS-RECOMENDADAS.md` | Análisis y recomendaciones |
 | Ejemplos | `08-EJEMPLOS-CODIGO-MEJORADO.md` | Código de referencia |
+| Media Prioridad | `10-MEJORAS-MEDIA-PRIORIDAD.md` | Performance, TypeScript, Seguridad |
+| Accesibilidad | `11-MEJORAS-ACCESIBILIDAD.md` | A11y, WCAG, ARIA |
 
 ## 🎯 Por Caso de Uso
 

@@ -123,13 +123,20 @@ const Contacto = () => {
           <form
             className="self-stretch flex justify-center items-start"
             onSubmit={handleSubmit}
+            aria-label="Formulario de contacto"
           >
             <div className="flex-1 md:inline-flex flex flex-col justify-center items-center gap-5 md:gap-6">
               {/* Nombre y Apellido */}
               <div className="self-stretch flex justify-start items-start gap-5">
                 <div className="flex-1 px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-center">
+                  <label htmlFor="contact-nombre" className="sr-only">
+                    Nombre
+                  </label>
                   <input
+                    id="contact-nombre"
                     required
+                    aria-label="Nombre"
+                    aria-required="true"
                     className="w-full bg-transparent text-white text-sm md:text-base font-normal font-['Lora'] tracking-wide placeholder-white placeholder-opacity-70 focus:outline-none"
                     name="nombre"
                     placeholder="Nombre"
@@ -139,8 +146,14 @@ const Contacto = () => {
                   />
                 </div>
                 <div className="flex-1 px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-center">
+                  <label htmlFor="contact-apellido" className="sr-only">
+                    Apellido
+                  </label>
                   <input
+                    id="contact-apellido"
                     required
+                    aria-label="Apellido"
+                    aria-required="true"
                     className="w-full bg-transparent text-white text-sm md:text-base font-normal font-['Lora'] tracking-wide placeholder-white placeholder-opacity-70 focus:outline-none"
                     name="apellido"
                     placeholder="Apellido"
@@ -153,8 +166,14 @@ const Contacto = () => {
 
               {/* Email */}
               <div className="self-stretch px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-center">
+                <label htmlFor="contact-email" className="sr-only">
+                  Email
+                </label>
                 <input
+                  id="contact-email"
                   required
+                  aria-label="Email"
+                  aria-required="true"
                   className="w-full bg-transparent text-white text-sm md:text-base font-normal font-['Lora'] tracking-wide placeholder-white placeholder-opacity-70 focus:outline-none"
                   name="email"
                   placeholder="Email"
@@ -166,10 +185,22 @@ const Contacto = () => {
 
               {/* Motivo Dropdown */}
               <div className="self-stretch px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 relative">
+                <label htmlFor="contact-motivo" className="sr-only">
+                  Motivo de consulta
+                </label>
                 <button
+                  id="contact-motivo"
+                  aria-label={`Motivo de consulta: ${formData.motivo || 'Seleccionar motivo'}`}
+                  aria-expanded={isDropdownOpen}
+                  aria-haspopup="listbox"
                   className="w-full flex justify-between items-center text-left"
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") {
+                      setIsDropdownOpen(false);
+                    }
+                  }}
                 >
                   <span className="text-white text-sm md:text-base font-normal font-['Lora'] tracking-wide">
                     {formData.motivo || "Motivo"}
@@ -193,11 +224,18 @@ const Contacto = () => {
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute top-full left-0 right-0 bg-neutral-700 border border-neutral-400 z-20 max-h-40 overflow-y-auto">
+                  <div 
+                    className="absolute top-full left-0 right-0 bg-neutral-700 border border-neutral-400 z-20 max-h-40 overflow-y-auto"
+                    role="listbox"
+                    aria-label="Opciones de motivo de consulta"
+                  >
                     {motivosOptions.map((motivo) => (
                       <button
                         key={motivo}
+                        aria-label={`Seleccionar motivo: ${motivo}`}
+                        aria-selected={formData.motivo === motivo}
                         className="w-full px-4 py-2 text-left text-white text-sm md:text-base font-normal font-['Lora'] tracking-wide hover:bg-white/10 transition-colors"
+                        role="option"
                         type="button"
                         onClick={() => handleMotivoSelect(motivo)}
                       >
@@ -210,8 +248,14 @@ const Contacto = () => {
 
               {/* Consulta */}
               <div className="self-stretch h-28 md:h-40 px-4 py-2.5 md:px-5 md:py-4 bg-white/10 border-b border-neutral-400 flex justify-start items-start">
+                <label htmlFor="contact-consulta" className="sr-only">
+                  Tu consulta
+                </label>
                 <textarea
+                  id="contact-consulta"
                   required
+                  aria-label="Tu consulta"
+                  aria-required="true"
                   className="w-full h-full bg-transparent text-white text-sm md:text-base font-normal font-['Lora'] tracking-wide placeholder-white placeholder-opacity-70 focus:outline-none resize-none"
                   name="consulta"
                   placeholder="Tu consulta..."
@@ -222,6 +266,7 @@ const Contacto = () => {
 
               {/* Submit Button */}
               <button
+                aria-label={isLoading ? "Enviando mensaje..." : "Enviar mensaje de contacto"}
                 className="self-stretch h-9 px-7 py-3 bg-amber-300 rounded-sm outline outline-[0.36px] outline-offset-[-0.36px] outline-neutral-900 flex justify-center items-center gap-2 hover:bg-amber-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isLoading}
                 type="submit"
@@ -234,6 +279,8 @@ const Contacto = () => {
               {/* Success/Error Message */}
               {message && (
                 <div
+                  role="alert"
+                  aria-live={message.type === "error" ? "assertive" : "polite"}
                   className={`self-stretch text-center text-sm md:text-base font-['Lora'] px-4 py-3 rounded ${
                     message.type === "success"
                       ? "bg-green-500/20 text-green-300 border border-green-500/50"

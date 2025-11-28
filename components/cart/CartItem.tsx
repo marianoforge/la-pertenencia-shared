@@ -67,21 +67,25 @@ export const CartItem: React.FC<CartItemProps> = ({
         {/* Quantity Controls */}
         <div className="flex items-center gap-3 mb-3">
           <button
+            aria-label={`Disminuir cantidad de ${wine.marca}`}
             className="w-7 h-7 bg-neutral-900 rounded-sm outline outline-[0.50px] outline-offset-[-0.50px] outline-amber-300 flex items-center justify-center text-dorado-light text-sm font-bold font-['Lora'] hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={quantity <= 1}
             onClick={() => onUpdateQuantity(wine.id, quantity - 1)}
+            type="button"
           >
-            -
+            <span aria-hidden="true">-</span>
           </button>
           <span className="text-sm font-medium font-['Lora'] text-neutral-900 w-8 text-center tracking-wide">
             {quantity}
           </span>
           <button
+            aria-label={`Aumentar cantidad de ${wine.marca}`}
             className="w-7 h-7 bg-neutral-900 rounded-sm outline outline-[0.50px] outline-offset-[-0.50px] outline-amber-300 flex items-center justify-center text-dorado-light text-sm font-bold font-['Lora'] hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={quantity >= wine.stock}
             onClick={() => onUpdateQuantity(wine.id, quantity + 1)}
+            type="button"
           >
-            +
+            <span aria-hidden="true">+</span>
           </button>
         </div>
 

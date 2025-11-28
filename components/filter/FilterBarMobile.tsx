@@ -36,6 +36,9 @@ export const FilterBarMobile: React.FC<FilterBarMobileProps> = ({
         <div className="relative z-[9998] flex-1">
           <button
             ref={buttonRef}
+            aria-label={`Ordenar por: ${sortOptions.find((option) => option.value === sortBy)?.label || "Más relevantes"}`}
+            aria-expanded={false}
+            aria-haspopup="listbox"
             className="w-full flex items-center gap-2 px-4 py-2 border border-neutral-400 rounded-sm text-left hover:border-neutral-600 transition-colors"
             type="button"
             onClick={onDropdownToggle}
@@ -50,6 +53,7 @@ export const FilterBarMobile: React.FC<FilterBarMobileProps> = ({
 
         {/* Filter button */}
         <button
+          aria-label="Mostrar filtros"
           className="flex items-center gap-2 px-3 py-2 hover:bg-neutral-100 rounded-sm transition-colors"
           type="button"
           onClick={onToggleFilters}
